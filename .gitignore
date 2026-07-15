@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Data & models (raw data tracked via data/MANIFEST.json, not in git)
+data/raw/
+data/processed/
+data/indexes/
+models/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Private study plan (not published)
+mini-plan.md
