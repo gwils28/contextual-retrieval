@@ -5,10 +5,19 @@ description = "Measured study of advanced and agentic retrieval for RAG"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 authors = [{ name = "wilson goma", email = "10559068+gwils28@users.noreply.github.com" }]
-dependencies = []
+dependencies = [
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=6.1.0",
+]
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = [
+    "ipykernel>=7.4.0",
+    "jupyter>=1.1.1",
+    "nbconvert>=7.17.2",
+    "pytest>=8",
+    "ruff>=0.6",
+]
 
 [build-system]
 requires = ["hatchling"]
