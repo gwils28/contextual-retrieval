@@ -8,7 +8,8 @@ __pycache__/
 # Secrets
 .env
 
-# Data & models (raw data tracked via data/MANIFEST.json, not in git)
+# Data & models (raw data tracked via data/MANIFEST.json, not in git;
+# data/contexts/ IS tracked: LLM-generated chunk contexts, slow and not bit-reproducible)
 data/raw/
 data/processed/
 data/indexes/
@@ -19,3 +20,6 @@ models/
 
 # Private study plan (not published)
 mini-plan.md
+
+# Local scaffolding (notebook builders), not published
+.scratch/

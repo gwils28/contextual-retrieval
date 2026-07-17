@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 authors = [{ name = "wilson goma", email = "10559068+gwils28@users.noreply.github.com" }]
 dependencies = [
+    "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
     "rank-bm25>=0.2.2",
     "sentence-transformers>=6.1.0",
 ]
@@ -14,6 +16,7 @@ dependencies = [
 dev = [
     "ipykernel>=7.4.0",
     "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
     "nbconvert>=7.17.2",
     "pytest>=8",
     "ruff>=0.6",
