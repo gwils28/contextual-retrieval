@@ -1,0 +1,130 @@
+# Block 2 — Retrieval benchmark protocol.
+# Frozen 2026-07-17 after owner review, BEFORE any result was computed.
+# Any later change is recorded in the "amendments" section with its reason.
+
+id: b2-retrieval-v1
+status: frozen
+frozen_on: 2026-07-17
+
+question: >
+  How much does each retrieval layer (hybrid fusion, cross-encoder reranking, contextual chunks)
+  improve the retrieval of golden evidence on financial filings, under naive vs table-aware
+  chunking, and at what latency cost?
+
+data:
+  source: FinQA (czyssrs/FinQA, dataset/{train,dev,test}.json, EMNLP 2021)
+  raw_files_sha256:
+    train.json: 49f237eb9779b569473b26b08048867d04635a7cc39ad6a7a5664c55bb428db6
+    dev.json: a847fb7e0d61a3125a1e2909852df6b89f1ee64d2c5ff1bf689e332214deee51
+    test.json: 831dbfb2e785dbc227f895ce3f24046433467aec67b09db2bd6ac7692a8a30dc
+  unit_of_document: one FinQA page (pre_text + table + post_text); FinQA ships pages, not full reports
+  corpus: all unique pages of the TEST split, pooled in one index (380 pages, 100 companies)
+  queries: all TEST questions (1147)
+  audited_subset: 25 queries, stratified by gold type (table / text / table+text), seed 0,
+    gold-to-chunk mapping checked by hand for both chunkings and shown in a notebook
+
+query_form:
+  # FinQA questions were written while looking at the page and rarely name the company.
+  # In a pooled index they are ambiguous by construction. We restore the information an analyst
+  # always has (which issuer) by prefixing it to the question.
+  # No year in the prefix: the FinQA folder year does not reliably match the report's fiscal year
+  # (on the 380 test pages, the latest year cited equals the folder year on only 115 pages), and
+  # 77 % of questions already state the year they ask about.
+  main: "{company_name}: {question}"
+  company_name_source: configs/finqa_tickers.csv (ticker -> company name as written in the
+    filings of that period, e.g. "Priceline" for BKNG; each name checked against page text)
+  sidebar_settings:
+    raw_question: question as written, pooled index — measures the ambiguity ceiling
+    company_filter: pooled index restricted to the company's pages (metadata pre-filter) —
+      the production alternative to entity-aware chunks
+
+golden:
+  definition: FinQA gold_inds (sentences text_i and table rows table_i), mapped to chunks per strategy
+  mapping:
+    table_aware: exact (each gold row is one chunk; each gold sentence belongs to one text chunk)
+    naive: the chunk holding the largest share of the gold span's characters (ties -> first)
+  multi_gold: a question may have 1-5 gold facts (mean 1.66); duplicates after mapping are merged
+
+chunking:
+  naive:
+    description: page linearized (pre_text, table rows as "a | b | c", post_text), fixed window
+    window_tokens: 200        # bge tokenizer tokens
+    overlap_tokens: 0
+  table_aware:
+    text: consecutive sentences grouped up to 200 tokens, never crossing the table
+    table: one chunk per data row, serialized with its column headers
+      ("<row label> | <col header>: <value> | ..."), header row not a separate chunk
+
+configs:
+  - id: dense
+    retriever: cosine over BAAI/bge-base-en-v1.5 embeddings (exact search, normalized, BGE query prefix)
+  - id: hybrid
+    retriever: RRF(dense top-100, BM25 top-100 with positive score), rrf_k 60
+  - id: hybrid_rerank
+    retriever: hybrid top-50 reranked by BAAI/bge-reranker-v2-m3 (fp16, max_length 512)
+  - id: contextual_hybrid_rerank
+    retriever: same as hybrid_rerank on contextualized chunks (context prepended for BOTH indexes)
+    contextualizer:
+      local: qwen2.5:7b-instruct via Ollama (Docker, GPU), temperature 0
+      reference: Claude Haiku-class with prompt caching, run when the API key is available
+      prompt: Anthropic contextual retrieval prompt; document = the page, plus the company name
+        from metadata (stands in for the report's cover page, which FinQA pages lack)
+  # Also reported, no extra cost: bm25 alone, contextual_dense, contextual_hybrid
+  # (isolates each layer's contribution, as in the Anthropic article).
+
+bm25: {implementation: ragbench.lexical.BM25, k1: 1.5, b: 0.75, tokenizer: ragbench.lexical.tokenize}
+
+metrics:
+  primary: pass_all@k   # all gold chunks of the question in top-k (a subtraction needs both numbers)
+  secondary:
+    - pass_any@k        # at least one gold chunk in top-k
+    - recall@k          # fraction of gold chunks in top-k
+    - mrr@10
+  ks: [5, 10, 20]       # 5 and 10 from the plan; 20 for comparability with Anthropic (1 - recall@20)
+  latency:
+    measure: wall-clock per query, retrieval only (no generation), batch size 1, warm models
+    report: median and p95, per config
+    hardware: RTX 5070 Laptop 8 GB, reported with library versions
+
+statistics:
+  ci: percentile bootstrap over queries, 10000 resamples, 95 %, seed 0
+  paired_tests: exact McNemar on pass_all@10 for each adjacent pair
+    (dense->hybrid, hybrid->hybrid_rerank, hybrid_rerank->contextual_hybrid_rerank), per chunking,
+    and naive vs table_aware per config
+  multiple_comparisons: Holm correction across the paired tests
+  minimum_effect_reported_as_gain: significant after Holm at alpha 0.05
+
+fixed_hyperparameters:
+  # Nothing is tuned on the test queries. These values are set a priori from the sources.
+  window_tokens: 200
+  rrf_k: 60
+  rerank_top_n: 50
+  bm25: {k1: 1.5, b: 0.75}
+
+expected_outputs:
+  - results table: config x chunking -> pass_all@5/10/20, pass_any@10, recall@10, mrr@10, latency
+  - paired test table with Holm-adjusted p-values
+  - per-query outcomes (parquet) for error analysis
+  - list of queries where dense misses and BM25 rescues (the client argument for hybrid)
+
+reproduce: make b2   # downloads data (checks sha256), builds chunks and indexes, runs all configs
+
+amendments:
+  # All made on 2026-07-17 during implementation, BEFORE any retrieval result was inspected.
+  - id: A1
+    change: a gold fact maps to a SET of acceptable chunks; under table_aware, a gold header row
+      (table_0, 13 of 1147 questions) is satisfied by any row chunk of its table
+    reason: the header is repeated inside every row chunk, so no single chunk owns it
+  - id: A2
+    change: also report pass_all at a fixed token budget (1000 and 2000 bge tokens), taking chunks
+      in rank order until the budget is exhausted
+    reason: naive chunks average 178 tokens vs 80 for table_aware and merge gold facts
+      (1.22 vs 1.59 gold sets per question), so pass_all@k at equal k favours naive mechanically;
+      a token budget is the fair comparison between chunkings and the real constraint of a prompt
+  - id: A3
+    change: table_aware treats a table as headerless when every value cell of row 0 is a number
+      other than a bare year; each row (row 0 included) is then its own chunk, without headers
+    reason: found in the hand audit (HOLX/2007/page_126) — FinQA keeps the first row at index 0
+      even when it is data, and using it as a header wrote "$ 2800:" in front of every value;
+      38 of 379 test tables (79 questions with table gold) are affected. A first plain run was
+      stopped before any metric was read, and is discarded.

@@ -40,7 +40,7 @@ block therefore starts from fundamentals (embeddings, BM25, IR metrics) before g
 |-------|----------|
 | Corpus | **FinQA** (`ibm-research/finqa`, HF). Golden = annotated supporting facts (`gold_inds`). |
 | Search scope | **Pooled corpus**: all chunks from all reports in one index (production-realistic). |
-| Golden set | **25 hand-audited queries** (pedagogy) **+ ~300 auto-derived** from `gold_inds` (statistics). |
+| Golden set | **25 hand-audited queries** (pedagogy) **+ all 1,147 FinQA test questions** (statistics). |
 | Statistics | Bootstrap 95 % CIs per metric; paired test between configs on the same queries. |
 | Chunking | **Compare 2 strategies**: naive fixed token window (breaks tables) vs table-aware (row + header). |
 | Dense model | `BAAI/bge-base-en-v1.5` |
@@ -91,3 +91,6 @@ Based on the owner's article *Claude Code for data science*:
 |------|----------|--------|
 | 2026-07-15 | Charter adopted | Alignment interview |
 | 2026-07-15 | Study plan kept out of the public repo | Owner's choice: private source document |
+| 2026-07-17 | Golden set: all 1,147 test questions instead of ~300 | Contextualization cost scales with the corpus, not the queries; more queries = more statistical power for free |
+| 2026-07-17 | Queries prefixed with the company name (`"{company}: {question}"`) | FinQA questions rarely name the company and are ambiguous in a pooled index; no year in the prefix because FinQA folder years do not reliably match fiscal years |
+| 2026-07-17 | Primary metric `pass_all@k` (all gold facts in top-k) | A numeric answer needs all its operands |
