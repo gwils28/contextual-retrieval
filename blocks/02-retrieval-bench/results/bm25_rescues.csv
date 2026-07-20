@@ -1,0 +1,591 @@
+strategy,setting,qid,company,question
+naive,company_filter,ABMD/2006/page_43.pdf-1,Abiomed,operating lease commitments are what percent of total payment commitments?
+naive,company_filter,ABMD/2006/page_43.pdf-2,Abiomed,what percentage of total obligations are operating lease obligations?
+naive,company_filter,ABMD/2006/page_43.pdf-3,Abiomed,what percentage of total obligations are operating lease obligations in 2008?
+naive,company_filter,AMT/2006/page_113.pdf-1,American Tower,in 2004 what was the percent of the change in the employee liability for employee separations
+naive,company_filter,AMT/2006/page_113.pdf-2,American Tower,what is the net change in the balance of employee separations liability during 2004?
+naive,company_filter,AMT/2006/page_113.pdf-3,American Tower,what is the net change in the balance of employee separations liability during 2005?
+naive,company_filter,AMT/2007/page_127.pdf-3,American Tower,what is the growth rate in the price of shares purchased by employees from 2005 to 2006?
+naive,company_filter,AMT/2007/page_127.pdf-4,American Tower,what is the growth rate in the price of shares purchased by employees from 2006 to 2007?
+naive,company_filter,AMT/2008/page_94.pdf-3,American Tower,what is the percentage change in the the outstanding debt under the 3.00% ( 3.00 % ) notes from 2007 to 2008?
+naive,company_filter,AMT/2012/page_118.pdf-2,American Tower,"pursuant to the agreement , on march 30 , 2012 , what was the approximate price for each site the company purchased in thousands"
+naive,company_filter,AMT/2012/page_144.pdf-2,American Tower,"what was the total reclassification of oci into income , in millions , during the years ended december 31 , 2012 , 2011 and 2010?"
+naive,company_filter,AMT/2014/page_160.pdf-1,American Tower,what is the percentage change in aggregate rent expense from 2013 to 2014?
+naive,company_filter,AMT/2014/page_160.pdf-3,American Tower,what is the percentage change in aggregate rent expense from 2012 to 2013?
+naive,company_filter,AON/2010/page_86.pdf-2,Aon,what is portion of the total consideration transferred is dedicated to trademarks?
+naive,company_filter,BLK/2015/page_124.pdf-1,BlackRock,what percent of future commitments are due after 2020?
+naive,company_filter,BLL/2010/page_35.pdf-4,Ball Corporation,what was the gross proceeds from the sale of the packaging business ( in millions ) if the preliminary closing adjustments are not finalized?
+naive,company_filter,DRE/2002/page_15.pdf-2,Duke Realty,what is the percent change in general and administrative expense from 2000 to 2001?
+naive,company_filter,ETR/2004/page_212.pdf-4,Entergy,what is the decrease in net income as a percentage of the the decrease in net revenue from 2003 to 2004?
+naive,company_filter,ETR/2015/page_17.pdf-3,Entergy,what percentage of net revenue of 2015 is attributed to the growth from to retail electric price?
+naive,company_filter,ETR/2017/page_143.pdf-2,Entergy,what is the percent change in annual long-term debt maturities from 2018 to 2019?
+naive,company_filter,ETR/2017/page_143.pdf-3,Entergy,what is the amount of interest applied to the annual long-term debt maturities in 2018?
+naive,company_filter,ETR/2017/page_372.pdf-1,Entergy,what was the average net revenue between 2016 and 2017 in millions
+naive,company_filter,ETR/2017/page_372.pdf-3,Entergy,what percent did net revenue decrease between 2016 and 2017?
+naive,company_filter,GIS/2017/page_31.pdf-2,General Mills,what portion of total long-term obligations are due in 2018?
+naive,company_filter,GS/2012/page_121.pdf-1,Goldman Sachs,what is the percentage change in total assets in 2012?
+naive,company_filter,GS/2012/page_142.pdf-2,Goldman Sachs,"in millions for 2012 2011 , what was maximum collateral posted?"
+naive,company_filter,GS/2012/page_142.pdf-3,Goldman Sachs,what was the percentage change in collateral posted between 2011 and 2012?
+naive,company_filter,GS/2013/page_149.pdf-1,Goldman Sachs,what was the percentage change in net derivative liabilities under bilateral agreements from 2012 to 2013?
+naive,company_filter,GS/2013/page_149.pdf-2,Goldman Sachs,what was the percentage change in collateral posted from 2012 to 2013?
+naive,company_filter,GS/2013/page_149.pdf-4,Goldman Sachs,"in millions for 2013 and 2012 , what was the minimum collateral posted?"
+naive,company_filter,GS/2013/page_63.pdf-1,Goldman Sachs,"in millions for 2013 and 2012 , what was average total assets?"
+naive,company_filter,GS/2013/page_63.pdf-2,Goldman Sachs,what was the change in millions of total assets from 2012 to 2013?
+naive,company_filter,GS/2014/page_165.pdf-3,Goldman Sachs,"in millions for 2014 and 2013 , what was the change in compensation and benefits liability?"
+naive,company_filter,GS/2015/page_188.pdf-1,Goldman Sachs,what percentage of future minimum rental payments are due after 2020?
+naive,company_filter,GS/2015/page_188.pdf-3,Goldman Sachs,"for future lease payments , what percent was due in 2021 and thereafter?"
+naive,company_filter,GS/2018/page_78.pdf-2,Goldman Sachs,"what are the net revenues in investment management in 2016 , in billions?"
+naive,company_filter,HOLX/2006/page_100.pdf-2,Hologic,what percentage of the estimated purchase price is developed technology and know how?
+naive,company_filter,HOLX/2007/page_93.pdf-2,Hologic,what portion of the issued securities is approved by security holders?
+naive,company_filter,HOLX/2008/page_143.pdf-2,Hologic,what potion of the r2 acquisition is paid in cash?
+naive,company_filter,JPM/2010/page_281.pdf-2,JPMorgan Chase,"as of december 31 , 2009 , what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+naive,company_filter,JPM/2010/page_281.pdf-3,JPMorgan Chase,"as of december 31 , 2010 what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+naive,company_filter,K/2006/page_52.pdf-3,Kellogg,by what percent did net cash from operations increase between 2004 and 2006?
+naive,company_filter,LMT/2014/page_50.pdf-2,Lockheed Martin,what was the change in millions in backlog at year-end between 2013 and 2014?
+naive,company_filter,MO/2014/page_39.pdf-1,Altria,what is the higher pricing as a percentage of the operating companies income increase?
+naive,company_filter,MRO/2003/page_84.pdf-2,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,company_filter,MRO/2003/page_84.pdf-3,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,company_filter,MRO/2013/page_19.pdf-3,Marathon Oil,"what was average worldwide net acreage expiring in the total three year period , in millions?"
+naive,company_filter,MSI/2014/page_76.pdf-2,Motorola Solutions,what is the percent change in number of shares purchased by employees between 2013 and 2014?
+naive,company_filter,PNC/2012/page_65.pdf-5,PNC,"how many total assets were there at year ended dec 31 , 2011 , in millions?"
+naive,company_filter,PNC/2012/page_68.pdf-1,PNC,by what percentage did total residential mortgages increase from 2011 to 2012?
+naive,company_filter,PNC/2015/page_93.pdf-1,PNC,"for interest only products , what percent of the total was due in 2020 and thereafter?"
+naive,company_filter,PNC/2015/page_93.pdf-2,PNC,"for principle and interest products , what percent of the total was due in 2020 and thereafter?"
+naive,company_filter,RSG/2016/page_135.pdf-1,Republic Services,based on the 2016 actual asset allocation what was the debt to equity ratio
+naive,company_filter,SNA/2012/page_110.pdf-3,Snap-on,"what is the total fair value of the non-vested performance awards at beginning of year , ( in thousands ) ?"
+naive,company_filter,SNA/2018/page_31.pdf-1,Snap-on,for the quarter ended 12/29/2018 what was the percent of the total shares bought after 11/25/2018
+naive,company_filter,UNP/2007/page_25.pdf-1,Union Pacific,what was the operating expenses in 2006 in millions
+naive,company_filter,UNP/2010/page_21.pdf-4,Union Pacific,how much more was spent on shares in nov 2010 than dec 2010?
+naive,company_filter,UNP/2011/page_33.pdf-4,Union Pacific,what was the change in millions of average equity from 2009 to 2010?
+naive,company_filter,UPS/2007/page_49.pdf-1,UPS,"what is the total in millions of expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007?"
+naive,company_filter,UPS/2007/page_49.pdf-4,UPS,"what percentage of the total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007 , is pension fundings?"
+naive,main,ABMD/2005/page_29.pdf-1,Abiomed,"assuming the same rate of growth as in 2005 , what would the projected risk free interest rate be in 2006?"
+naive,main,ABMD/2007/page_78.pdf-1,Abiomed,what is the average expected volatility used in the black scholes formula?
+naive,main,ABMD/2007/page_78.pdf-2,Abiomed,"assuming the same appreciation as 2007 , what would be the expected 2008 weighted average grant-date fair value for options?"
+naive,main,ABMD/2007/page_78.pdf-3,Abiomed,what is the growth rate in the weighted average fair value for options granted between 2006 to 2007?
+naive,main,ABMD/2007/page_78.pdf-4,Abiomed,what is the growth rate in the weighted average fair value for options granted between 2005 to 2006?
+naive,main,ABMD/2012/page_41.pdf-1,Abiomed,did abiomed outperform the nasdaq composite index?
+naive,main,ABMD/2012/page_79.pdf-1,Abiomed,"what was total rent expense for fiscal years 2010 to 2012 , in millions?"
+naive,main,ADBE/2008/page_89.pdf-3,Adobe,the combined amount of accrued interest and penalties related to tax positions taken on our tax returns and included in non-current income taxes payable was what percent of the total ending balance as of november 28 2008?
+naive,main,ADBE/2008/page_89.pdf-4,Adobe,"if the total fin 48 gross liability for unrecognized tax benefits at november 28 , 2008 were recognized in the future , is the amount of unrecognized tax benefits that would decrease the effective tax rate greater than the amount that would decrease goodwill?"
+naive,main,AES/2001/page_85.pdf-2,AES Corporation,"prior to the first remarketing date , what is the annual interest cost on the remarketable or redeemable securities ( 2018 2018roars 2019 2019 ) ?"
+naive,main,AES/2002/page_128.pdf-4,AES Corporation,what was the average rental expense in millions for 2000 through 2002?
+naive,main,ALXN/2016/page_153.pdf-2,Alexion,"what is the borrowing under the term loan facility as a percentage of the total contractual maturities of long-term debt obligations due subsequent to december 31 , 2016?"
+naive,main,AMAT/2013/page_37.pdf-1,Applied Materials,what is the total return if 100000 are invested in applied materials in 2008 and sold in 2011?
+naive,main,AMT/2006/page_113.pdf-1,American Tower,in 2004 what was the percent of the change in the employee liability for employee separations
+naive,main,AMT/2006/page_113.pdf-2,American Tower,what is the net change in the balance of employee separations liability during 2004?
+naive,main,AMT/2006/page_113.pdf-3,American Tower,what is the net change in the balance of employee separations liability during 2005?
+naive,main,AMT/2007/page_127.pdf-3,American Tower,what is the growth rate in the price of shares purchased by employees from 2005 to 2006?
+naive,main,AMT/2007/page_127.pdf-4,American Tower,what is the growth rate in the price of shares purchased by employees from 2006 to 2007?
+naive,main,AMT/2008/page_94.pdf-3,American Tower,what is the percentage change in the the outstanding debt under the 3.00% ( 3.00 % ) notes from 2007 to 2008?
+naive,main,AMT/2012/page_118.pdf-2,American Tower,"pursuant to the agreement , on march 30 , 2012 , what was the approximate price for each site the company purchased in thousands"
+naive,main,AMT/2012/page_144.pdf-2,American Tower,"what was the total reclassification of oci into income , in millions , during the years ended december 31 , 2012 , 2011 and 2010?"
+naive,main,AMT/2014/page_160.pdf-1,American Tower,what is the percentage change in aggregate rent expense from 2013 to 2014?
+naive,main,AMT/2014/page_160.pdf-3,American Tower,what is the percentage change in aggregate rent expense from 2012 to 2013?
+naive,main,AMT/2016/page_125.pdf-1,American Tower,what is the net change in the balance of unrecognized tax benefits during 2016?
+naive,main,AMT/2016/page_125.pdf-3,American Tower,what is the net change in the balance of unrecognized tax benefits during 2015?
+naive,main,ANSS/2012/page_93.pdf-3,Ansys,"what is the range , in thousands , for united states' revenue from 2010-2012?"
+naive,main,AON/2010/page_86.pdf-1,Aon,what is portion of the total consideration transferred is dedicated to goodwill?
+naive,main,AON/2010/page_86.pdf-2,Aon,what is portion of the total consideration transferred is dedicated to trademarks?
+naive,main,AWK/2012/page_117.pdf-3,American Water Works,what was total change in unrecognized tax benefits in millions from january 1 2011 to december 31 2011?
+naive,main,AWK/2013/page_122.pdf-2,American Water Works,as of december 31.2013 what was the ratio of the interest and penalty as a percent of the total unrecognized tax benefits
+naive,main,AWK/2013/page_122.pdf-4,American Water Works,what was the net tax positions for 2012
+naive,main,AWK/2014/page_121.pdf-4,American Water Works,what was canadian nol's as a percentage of state nol's in 2014?
+naive,main,BDX/2018/page_106.pdf-1,Becton Dickinson,what was the percentage change in the losses on debt extinguishment from 2017 to 2018
+naive,main,BLL/2006/page_67.pdf-3,Ball Corporation,what percentage of total net assets acquired were goodwill?
+naive,main,BLL/2006/page_67.pdf-4,Ball Corporation,what percentage of total net assets acquired were property plant and equipment?
+naive,main,BLL/2010/page_35.pdf-4,Ball Corporation,what was the gross proceeds from the sale of the packaging business ( in millions ) if the preliminary closing adjustments are not finalized?
+naive,main,BLL/2010/page_37.pdf-1,Ball Corporation,what was the percentage change in cash flows provided by ( used in ) operating activities including discontinued operations between 2008 and 2009?
+naive,main,BLL/2010/page_37.pdf-2,Ball Corporation,what was the percentage decrease in cash flows from operations from 2009 to 2010?
+naive,main,BLL/2010/page_37.pdf-3,Ball Corporation,what was the percentage change in cash flows provided by ( used in ) operating activities including discontinued operations between 2009 and 2010?
+naive,main,C/2008/page_44.pdf-1,Citigroup,what was the percentage change in non-interest revenue from 2006 to 2007?
+naive,main,C/2008/page_44.pdf-2,Citigroup,what was the percentage change in non-interest revenue from 2007 to 2008?
+naive,main,CB/2008/page_229.pdf-2,ACE Limited,what was the average amortization expense from 2006 to 2008
+naive,main,CE/2016/page_19.pdf-1,Celanese,what is the total research and development for the year 2014 through 2016 in millions
+naive,main,CE/2016/page_19.pdf-2,Celanese,what is the net change in the amount spent for research and development in 2015 compare to 2014?
+naive,main,CE/2016/page_19.pdf-3,Celanese,what is the net change in the amount spent for research and development in 2016 compare to 2015?
+naive,main,CE/2016/page_19.pdf-4,Celanese,what was the percentage change in the the research and development costs from 2014 to 2015
+naive,main,CME/2010/page_69.pdf-3,CME Group,what is the annual interest expense on the fixed rate notes due march 2018 after the hedge transaction?
+naive,main,DG/2005/page_44.pdf-2,Dollar General,what was the total impairment costs recorded from 2003 to 2005 in millions
+naive,main,DG/2007/page_67.pdf-1,Dollar General,what was the change in millions of impairment charges included in sg&a expense from 2006 to 2007
+naive,main,DRE/2012/page_40.pdf-1,Duke Realty,what was the percentage reduction second generation tenant improvements
+naive,main,DVN/2018/page_35.pdf-4,Devon Energy,what was the tax rate on the net earnings due to the gain on the sale of our aggregate ownership interests in enlink discontinued operations
+naive,main,ECL/2016/page_52.pdf-1,Ecolab,"what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?"
+naive,main,ETR/2004/page_212.pdf-4,Entergy,what is the decrease in net income as a percentage of the the decrease in net revenue from 2003 to 2004?
+naive,main,ETR/2004/page_281.pdf-1,Entergy,what is the money pool activity use of operating cash flows as a percentage of receivables from the money pool in 2004?
+naive,main,ETR/2015/page_17.pdf-3,Entergy,what percentage of net revenue of 2015 is attributed to the growth from to retail electric price?
+naive,main,ETR/2017/page_372.pdf-1,Entergy,what was the average net revenue between 2016 and 2017 in millions
+naive,main,ETR/2017/page_372.pdf-3,Entergy,what percent did net revenue decrease between 2016 and 2017?
+naive,main,FBHS/2017/page_83.pdf-2,Fortune Brands Home & Security,what was the percentage change in the weighted average fair value on the date of the award of the common stock
+naive,main,FIS/2016/page_45.pdf-1,Fidelity National Information Services,what is the percentage increase in cash flows from operations from 2015 to 2016?
+naive,main,FIS/2016/page_45.pdf-3,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2015 to 2016?
+naive,main,FIS/2016/page_45.pdf-4,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2014 to 2015?
+naive,main,GIS/2017/page_31.pdf-3,General Mills,"what are the total off-balance sheet obligations , ( in millions ) ?"
+naive,main,GPN/2008/page_78.pdf-1,Global Payments,what is the average amortization expense related to customer-related intangible assets?
+naive,main,GPN/2008/page_78.pdf-2,Global Payments,what percentage of net assets acquired was considered goodwill?
+naive,main,GPN/2008/page_78.pdf-3,Global Payments,what portion of the net assets acquired is related to goodwill?
+naive,main,GPN/2008/page_78.pdf-4,Global Payments,what percentage of net assets acquired was considered goodwill?
+naive,main,GPN/2010/page_89.pdf-1,Global Payments,in 2009 what was the percentage change in the non-vested at may 31 2009
+naive,main,GPN/2013/page_87.pdf-1,Global Payments,"what is the total fair value of the granted shares in 2013 , ( in thousands ) ?"
+naive,main,GPN/2013/page_87.pdf-3,Global Payments,what is the net change of the total fair value balance of non-vested shares during 2013?
+naive,main,GPN/2013/page_92.pdf-2,Global Payments,what is the percentage change in the expected minimum payments from 2014 to 2015?
+naive,main,GPN/2014/page_92.pdf-1,Global Payments,"what is the total value of securities issued and approved by security holders , ( in millions ) ?"
+naive,main,GPN/2014/page_92.pdf-2,Global Payments,"what is the total value of securities approved by security holders but net yer issued , ( in millions ) ?"
+naive,main,GS/2012/page_121.pdf-1,Goldman Sachs,what is the percentage change in total assets in 2012?
+naive,main,GS/2012/page_142.pdf-1,Goldman Sachs,what was the percentage change in net derivative liabilities under bilateral agreements between 2011 and 2012?
+naive,main,GS/2012/page_142.pdf-2,Goldman Sachs,"in millions for 2012 2011 , what was maximum collateral posted?"
+naive,main,GS/2012/page_142.pdf-3,Goldman Sachs,what was the percentage change in collateral posted between 2011 and 2012?
+naive,main,GS/2013/page_149.pdf-1,Goldman Sachs,what was the percentage change in net derivative liabilities under bilateral agreements from 2012 to 2013?
+naive,main,GS/2013/page_149.pdf-2,Goldman Sachs,what was the percentage change in collateral posted from 2012 to 2013?
+naive,main,GS/2013/page_149.pdf-4,Goldman Sachs,"in millions for 2013 and 2012 , what was the minimum collateral posted?"
+naive,main,GS/2013/page_63.pdf-1,Goldman Sachs,"in millions for 2013 and 2012 , what was average total assets?"
+naive,main,GS/2013/page_63.pdf-2,Goldman Sachs,what was the change in millions of total assets from 2012 to 2013?
+naive,main,GS/2014/page_165.pdf-3,Goldman Sachs,"in millions for 2014 and 2013 , what was the change in compensation and benefits liability?"
+naive,main,GS/2015/page_188.pdf-1,Goldman Sachs,what percentage of future minimum rental payments are due after 2020?
+naive,main,GS/2015/page_188.pdf-2,Goldman Sachs,what percentage of future minimum rental payments are due in 2018?
+naive,main,GS/2015/page_188.pdf-3,Goldman Sachs,"for future lease payments , what percent was due in 2021 and thereafter?"
+naive,main,GS/2015/page_188.pdf-4,Goldman Sachs,"in billions , what was the total for 2015 and 2014 relating to commitments to invest in funds managed by the firm?"
+naive,main,GS/2018/page_78.pdf-2,Goldman Sachs,"what are the net revenues in investment management in 2016 , in billions?"
+naive,main,HIG/2004/page_140.pdf-2,The Hartford,what is the total effect of reclassifying certain separate accounts to general account on the net income and other comprehensive income?
+naive,main,HII/2015/page_121.pdf-4,Huntington Ingalls,what was the operating margin in the 4th quarter
+naive,main,HOLX/2006/page_100.pdf-2,Hologic,what percentage of the estimated purchase price is developed technology and know how?
+naive,main,HOLX/2008/page_143.pdf-2,Hologic,what potion of the r2 acquisition is paid in cash?
+naive,main,IP/2006/page_75.pdf-3,International Paper,what was the cumulative rent expense from 2004 to 2006 in millions
+naive,main,IP/2009/page_45.pdf-4,International Paper,"considering the years 2010-2011 , what is the percentual increase observed in the maturities of long-term debt?"
+naive,main,IPG/2006/page_77.pdf-1,Interpublic Group,what is the total interest expense incurred by the senior unsecured notes that was redeemed in august 2005?
+naive,main,IPG/2008/page_72.pdf-3,Interpublic Group,what is the percentage increase from beginning to end of 2008 in unrecognized tax benefits?
+naive,main,IPG/2017/page_92.pdf-2,Interpublic Group,what is the percentage decrease in total contingent acquisition payments from 2018-2019?
+naive,main,JPM/2010/page_281.pdf-2,JPMorgan Chase,"as of december 31 , 2009 , what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+naive,main,JPM/2010/page_281.pdf-3,JPMorgan Chase,"as of december 31 , 2010 what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+naive,main,KHC/2018/page_132.pdf-2,Kraft Heinz,"in july and august 2018 , what percent of debt carrying debt in december did they pay off?"
+naive,main,LMT/2012/page_73.pdf-1,Lockheed Martin,what was the ratio of the shares in 2012 to 2011 that were excluded in the calculation of the diluted earnings due to the anti-dilute nature
+naive,main,LMT/2014/page_50.pdf-1,Lockheed Martin,what was the percent of the increase in the backlog from 2012 to 2013
+naive,main,LMT/2014/page_50.pdf-2,Lockheed Martin,what was the change in millions in backlog at year-end between 2013 and 2014?
+naive,main,LMT/2015/page_89.pdf-2,Lockheed Martin,what was the percentage change in net earnings from continuing operations from 2014 to 2015?
+naive,main,LMT/2015/page_89.pdf-3,Lockheed Martin,what was the percentage change in diluted earnings per common share from continuing operations from 2014 to 2015?
+naive,main,LMT/2015/page_89.pdf-4,Lockheed Martin,in november 2015 what was the percent of the costs associated with issuing of the notes under the 364-day facility used to finance the acquisition
+naive,main,MKTX/2012/page_42.pdf-1,MarketAxess,by how much did the high of mktx stock increase from 2011 to march 2012?
+naive,main,MKTX/2012/page_42.pdf-3,MarketAxess,by how much did the low of mktx stock increase from 2011 to march 2012?
+naive,main,MMM/2007/page_23.pdf-2,3M,in 2007 what was the ratio of the interest expense to the interest income
+naive,main,MO/2016/page_19.pdf-3,Altria,what is the roi of an investment in altria group inc . from december 2011 to december 2013?
+naive,main,MO/2016/page_19.pdf-4,Altria,what is the roi of an investment in s&p500 from december 2011 to december 2013?
+naive,main,MRK/2013/page_125.pdf-2,Merck,"considering the years 2011-2013 , what is the average value of settlements?"
+naive,main,MRK/2013/page_125.pdf-3,Merck,what was the ratio of interest and penalties associated with uncertain tax positions in 2013 to 2012
+naive,main,MRK/2013/page_125.pdf-4,Merck,what was the percentual decrease observed in the liabilities for accrued interest and penalties during 2012 and 2013?
+naive,main,MRO/2003/page_84.pdf-2,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,main,MRO/2003/page_84.pdf-3,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,main,MRO/2013/page_19.pdf-3,Marathon Oil,"what was average worldwide net acreage expiring in the total three year period , in millions?"
+naive,main,NKE/2009/page_43.pdf-1,Nike,"what is the total amount , in millions of dollars , outstanding in 2009?"
+naive,main,PNC/2012/page_100.pdf-3,PNC,"how many total private investor repurchase claims were there in 2011 and 2012 combined , in millions?"
+naive,main,PNC/2012/page_174.pdf-2,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+naive,main,PNC/2012/page_174.pdf-4,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+naive,main,PNC/2012/page_68.pdf-1,PNC,by what percentage did total residential mortgages increase from 2011 to 2012?
+naive,main,PNC/2015/page_93.pdf-1,PNC,"for interest only products , what percent of the total was due in 2020 and thereafter?"
+naive,main,RCL/2012/page_75.pdf-2,Royal Caribbean,what was the percentage increase in the port call costs included from 2011 to 2012
+naive,main,RCL/2012/page_75.pdf-3,Royal Caribbean,what was the percentage increase in port costs from 2010 to 2012
+naive,main,RSG/2013/page_123.pdf-2,Republic Services,what was the growth of the weighted-average estimated fair values of stock options granted from 2012 to 2013
+naive,main,RSG/2016/page_139.pdf-2,Republic Services,"as of december 31 , 2016 what was the percent of the outstanding authorized purchase capacity of the the october 2015 plan"
+naive,main,SNA/2012/page_110.pdf-3,Snap-on,"what is the total fair value of the non-vested performance awards at beginning of year , ( in thousands ) ?"
+naive,main,SNA/2018/page_31.pdf-1,Snap-on,for the quarter ended 12/29/2018 what was the percent of the total shares bought after 11/25/2018
+naive,main,STT/2007/page_111.pdf-1,State Street,what is the percentage change in the the balance of cash and u.s . government securities from 2006 to 2007?
+naive,main,STT/2007/page_111.pdf-3,State Street,what is the growth rate in the balance of standby letters of credit from 2006 to 2007?
+naive,main,STT/2007/page_111.pdf-4,State Street,what is the percent change in indemnified securities financing between 2006 and 2007?
+naive,main,STT/2009/page_127.pdf-3,State Street,what was the percent change in net unrealized loss on available-for-sale securities between 2008 and 2009?
+naive,main,UNP/2007/page_25.pdf-2,Union Pacific,what was the percentage increase in the cash provided by operating activities from 2006 to 2007
+naive,main,UNP/2010/page_21.pdf-3,Union Pacific,"had all four quarters of 2010 had the same number of total shares purchased , how many total shares were purchased in 2010?"
+naive,main,UNP/2010/page_21.pdf-4,Union Pacific,how much more was spent on shares in nov 2010 than dec 2010?
+naive,main,UNP/2011/page_33.pdf-3,Union Pacific,what was the change in millions of average equity from 2010 to 2011?
+naive,main,UNP/2011/page_33.pdf-4,Union Pacific,what was the change in millions of average equity from 2009 to 2010?
+naive,main,UPS/2007/page_49.pdf-1,UPS,"what is the total in millions of expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007?"
+naive,main,UPS/2007/page_49.pdf-4,UPS,"what percentage of the total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007 , is pension fundings?"
+naive,main,UPS/2010/page_52.pdf-1,UPS,"what percentage of total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2010 are due in 2012?"
+naive,main,UPS/2010/page_52.pdf-2,UPS,"what percentage of total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2010 are due in 2013?"
+naive,main,UPS/2016/page_114.pdf-1,UPS,what was the change in millions of vehicles from 2015 to 2016?
+naive,main,UPS/2016/page_114.pdf-2,UPS,what was the change in millions of buildings from 2015 to 2016?
+naive,main,WRK/2018/page_107.pdf-5,WestRock,what was the percentage change in the balance at end of fiscal year for the gross unrecognized tax benefits
+naive,main,ZBH/2009/page_58.pdf-1,Zimmer,what percentage of total contractual obligations is made up long-term debt?
+naive,main,ZBH/2009/page_58.pdf-4,Zimmer,what percent of total contractual obligations was long-term debt?
+naive,main,ZBH/2015/page_57.pdf-2,Zimmer,what was the change in total expense net of tax for share based compensation from 2014 to 2015 in millions?
+naive,main,ZBH/2015/page_57.pdf-3,Zimmer,what was the change in total expense net of tax for share based compensation from 2013 to 2014 in millions?
+naive,raw_question,AAL/2010/page_72.pdf-3,American Airlines,what is the total amount expected to be paid for pensions and retiree medical and other in the next 12 months?
+naive,raw_question,AAPL/2005/page_43.pdf-2,Apple,inventory was what percent of total working capital in 2005?
+naive,raw_question,ABC/2005/page_49.pdf-1,AmerisourceBergen,"without employee severance costs in 2004 and 2005 , what would have been the increase in net income in millions?\\n\\n"
+naive,raw_question,ABMD/2007/page_78.pdf-1,Abiomed,what is the average expected volatility used in the black scholes formula?
+naive,raw_question,ABMD/2007/page_78.pdf-2,Abiomed,"assuming the same appreciation as 2007 , what would be the expected 2008 weighted average grant-date fair value for options?"
+naive,raw_question,ABMD/2007/page_78.pdf-3,Abiomed,what is the growth rate in the weighted average fair value for options granted between 2006 to 2007?
+naive,raw_question,ABMD/2007/page_78.pdf-4,Abiomed,what is the growth rate in the weighted average fair value for options granted between 2005 to 2006?
+naive,raw_question,ABMD/2012/page_41.pdf-1,Abiomed,did abiomed outperform the nasdaq composite index?
+naive,raw_question,ABMD/2012/page_79.pdf-1,Abiomed,"what was total rent expense for fiscal years 2010 to 2012 , in millions?"
+naive,raw_question,ADBE/2008/page_89.pdf-3,Adobe,the combined amount of accrued interest and penalties related to tax positions taken on our tax returns and included in non-current income taxes payable was what percent of the total ending balance as of november 28 2008?
+naive,raw_question,ADBE/2008/page_89.pdf-4,Adobe,"if the total fin 48 gross liability for unrecognized tax benefits at november 28 , 2008 were recognized in the future , is the amount of unrecognized tax benefits that would decrease the effective tax rate greater than the amount that would decrease goodwill?"
+naive,raw_question,ADI/2010/page_80.pdf-1,Analog Devices,what is the growth rate in the balance of money market funds in 2010?
+naive,raw_question,ADI/2010/page_80.pdf-2,Analog Devices,what is the growth rate in the balance of mutual funds in 2010?
+naive,raw_question,ADI/2011/page_61.pdf-2,Analog Devices,what is the percentage change in cash flow hedges in 2011 compare to the 2010?
+naive,raw_question,AES/2001/page_85.pdf-2,AES Corporation,"prior to the first remarketing date , what is the annual interest cost on the remarketable or redeemable securities ( 2018 2018roars 2019 2019 ) ?"
+naive,raw_question,AES/2002/page_128.pdf-4,AES Corporation,what was the average rental expense in millions for 2000 through 2002?
+naive,raw_question,AES/2010/page_227.pdf-3,AES Corporation,what percent of total recourse debt is current?
+naive,raw_question,AES/2010/page_227.pdf-4,AES Corporation,what is the annual interest cost savings by the company redeeming the 8.75% ( 8.75 % ) second priority senior secured notes?
+naive,raw_question,ALXN/2016/page_153.pdf-2,Alexion,"what is the borrowing under the term loan facility as a percentage of the total contractual maturities of long-term debt obligations due subsequent to december 31 , 2016?"
+naive,raw_question,AMT/2006/page_113.pdf-1,American Tower,in 2004 what was the percent of the change in the employee liability for employee separations
+naive,raw_question,AMT/2006/page_113.pdf-2,American Tower,what is the net change in the balance of employee separations liability during 2004?
+naive,raw_question,AMT/2006/page_113.pdf-3,American Tower,what is the net change in the balance of employee separations liability during 2005?
+naive,raw_question,AMT/2008/page_94.pdf-3,American Tower,what is the percentage change in the the outstanding debt under the 3.00% ( 3.00 % ) notes from 2007 to 2008?
+naive,raw_question,AMT/2016/page_125.pdf-1,American Tower,what is the net change in the balance of unrecognized tax benefits during 2016?
+naive,raw_question,AMT/2016/page_125.pdf-3,American Tower,what is the net change in the balance of unrecognized tax benefits during 2015?
+naive,raw_question,AON/2007/page_171.pdf-2,Aon,what is the net change in the balance of net foreign exchange translation from 2006 to 2007?
+naive,raw_question,AON/2007/page_171.pdf-3,Aon,what are the average net unrealized investment gains for the period?
+naive,raw_question,AON/2007/page_188.pdf-1,Aon,what is the percentual increase in the balance during the year 2007?
+naive,raw_question,AON/2007/page_188.pdf-2,Aon,what portion of the of unrecognized tax benefits would have an impact in the effective tax rate if recognized?
+naive,raw_question,AON/2007/page_188.pdf-3,Aon,"what is the net change amount of unrecognized tax benefits during 2007 , ( in millions ) ?"
+naive,raw_question,AON/2007/page_188.pdf-4,Aon,"what is the difference between the additions for tax positions of prior years and the current year , in millions?"
+naive,raw_question,AON/2010/page_86.pdf-1,Aon,what is portion of the total consideration transferred is dedicated to goodwill?
+naive,raw_question,AON/2010/page_86.pdf-2,Aon,what is portion of the total consideration transferred is dedicated to trademarks?
+naive,raw_question,APD/2018/page_121.pdf-2,Air Products,what was the decrease observed in the total fair value of restricted stock that vested during 2017 and 2018?
+naive,raw_question,AWK/2012/page_117.pdf-3,American Water Works,what was total change in unrecognized tax benefits in millions from january 1 2011 to december 31 2011?
+naive,raw_question,AWK/2013/page_122.pdf-2,American Water Works,as of december 31.2013 what was the ratio of the interest and penalty as a percent of the total unrecognized tax benefits
+naive,raw_question,AWK/2013/page_122.pdf-4,American Water Works,what was the net tax positions for 2012
+naive,raw_question,AWK/2014/page_121.pdf-4,American Water Works,what was canadian nol's as a percentage of state nol's in 2014?
+naive,raw_question,BDX/2018/page_106.pdf-1,Becton Dickinson,what was the percentage change in the losses on debt extinguishment from 2017 to 2018
+naive,raw_question,BLL/2006/page_67.pdf-3,Ball Corporation,what percentage of total net assets acquired were goodwill?
+naive,raw_question,BLL/2006/page_67.pdf-4,Ball Corporation,what percentage of total net assets acquired were property plant and equipment?
+naive,raw_question,BLL/2010/page_35.pdf-2,Ball Corporation,what was the percentage change in net sales for the discontinued operations between 2009 and 2010?
+naive,raw_question,BLL/2010/page_35.pdf-3,Ball Corporation,what was the percentage change in net sales for the discontinued operations between 2008 and 2009?
+naive,raw_question,BLL/2010/page_35.pdf-4,Ball Corporation,what was the gross proceeds from the sale of the packaging business ( in millions ) if the preliminary closing adjustments are not finalized?
+naive,raw_question,BLL/2010/page_37.pdf-2,Ball Corporation,what was the percentage decrease in cash flows from operations from 2009 to 2010?
+naive,raw_question,BLL/2010/page_37.pdf-3,Ball Corporation,what was the percentage change in cash flows provided by ( used in ) operating activities including discontinued operations between 2009 and 2010?
+naive,raw_question,BLL/2011/page_32.pdf-1,Ball Corporation,what is the growth rate in net sales from 2010 to 2011?
+naive,raw_question,BLL/2011/page_32.pdf-2,Ball Corporation,what were average net sales in millions for the three years ending in 2011?
+naive,raw_question,BLL/2011/page_32.pdf-4,Ball Corporation,what is the growth rate in net sales from 2009 to 2010?
+naive,raw_question,CB/2008/page_229.pdf-2,ACE Limited,what was the average amortization expense from 2006 to 2008
+naive,raw_question,CB/2010/page_83.pdf-1,ACE Limited,what is the change in fair value of financial market instruments as part of the hedging strategy during 2010?
+naive,raw_question,CB/2010/page_83.pdf-2,ACE Limited,what is the percent change in the fair value financial market instruments as part of the hedging strategy during 2010 compare to 2009?
+naive,raw_question,CDW/2015/page_70.pdf-2,CDW,"what was the minimum amount of foreign currency translation loss , in millions?"
+naive,raw_question,CE/2013/page_16.pdf-1,Celanese,what is the growth rate in dividends received in 2013 compare to 2012?
+naive,raw_question,CE/2013/page_16.pdf-2,Celanese,what is the growth rate in dividends received in 2012 compare to 2011?
+naive,raw_question,CE/2016/page_19.pdf-1,Celanese,what is the total research and development for the year 2014 through 2016 in millions
+naive,raw_question,CE/2016/page_19.pdf-2,Celanese,what is the net change in the amount spent for research and development in 2015 compare to 2014?
+naive,raw_question,CE/2016/page_19.pdf-3,Celanese,what is the net change in the amount spent for research and development in 2016 compare to 2015?
+naive,raw_question,CE/2016/page_19.pdf-4,Celanese,what was the percentage change in the the research and development costs from 2014 to 2015
+naive,raw_question,CME/2010/page_123.pdf-5,CME Group,"what is the total value of the approved equity compensation plans in 2005 , in millions of dollars?"
+naive,raw_question,CME/2010/page_69.pdf-3,CME Group,what is the annual interest expense on the fixed rate notes due march 2018 after the hedge transaction?
+naive,raw_question,D/2002/page_87.pdf-3,Dominion,what is the growth rate in rental expense included in other operations and maintenance expense in 2002 compare to 2001?
+naive,raw_question,D/2002/page_87.pdf-4,Dominion,what is the growth rate in rental expense included in other operations and maintenance expense in 2001 compare to 2000?
+naive,raw_question,DG/2005/page_44.pdf-2,Dollar General,what was the total impairment costs recorded from 2003 to 2005 in millions
+naive,raw_question,DG/2007/page_67.pdf-1,Dollar General,what was the change in millions of impairment charges included in sg&a expense from 2006 to 2007
+naive,raw_question,DG/2007/page_67.pdf-2,Dollar General,what was the amount of the total impairment charges included in sg&a expense from 2005 to 2007 in millions
+naive,raw_question,DRE/2005/page_30.pdf-1,Duke Realty,what was the ratio of the after tax gains of in 2004 compared to 2003 in dollars
+naive,raw_question,DRE/2007/page_56.pdf-2,Duke Realty,what is the net income per common share for the year 2007?
+naive,raw_question,DVN/2015/page_79.pdf-3,Devon Energy,what was the percent of the change in the volatility factor
+naive,raw_question,ECL/2016/page_52.pdf-1,Ecolab,"what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?"
+naive,raw_question,ETR/2004/page_281.pdf-1,Entergy,what is the money pool activity use of operating cash flows as a percentage of receivables from the money pool in 2004?
+naive,raw_question,ETR/2004/page_281.pdf-2,Entergy,what is the money pool activity use of operating cash flows as a percentage of receivables from the money pool in 2003?
+naive,raw_question,ETR/2011/page_301.pdf-1,Entergy,what is the percentage decrease in receivables from the money pool from 2010 to 2011?
+naive,raw_question,ETR/2011/page_301.pdf-2,Entergy,by how much did the receivables from the money pool differ from 2009 to 2010?
+naive,raw_question,ETR/2015/page_17.pdf-2,Entergy,what is the growth rate of net revenue from 2014 to 2015 ?
+naive,raw_question,ETR/2016/page_150.pdf-2,Entergy,"relating to the texas securitization bonds , what were the total amounts ( millions ) of the issuance when considering the transaction costs and the related deferred income tax benefits?"
+naive,raw_question,ETR/2017/page_143.pdf-1,Entergy,"what was the sum of the annual long-term debt maturities outstanding as of december 31 , 2017 , for the next five years"
+naive,raw_question,FBHS/2017/page_22.pdf-2,Fortune Brands Home & Security,what was the amount of sales in that went to international markets in millions
+naive,raw_question,FBHS/2017/page_83.pdf-2,Fortune Brands Home & Security,what was the percentage change in the weighted average fair value on the date of the award of the common stock
+naive,raw_question,FIS/2006/page_31.pdf-1,Fidelity National Information Services,what portion of the total leased locations are in texas?
+naive,raw_question,FIS/2006/page_31.pdf-2,Fidelity National Information Services,what portion of the total leased locations are located in united states?
+naive,raw_question,FIS/2010/page_70.pdf-2,Fidelity National Information Services,what portion of total purchase price is related to stock awards?
+naive,raw_question,GIS/2017/page_31.pdf-3,General Mills,"what are the total off-balance sheet obligations , ( in millions ) ?"
+naive,raw_question,GIS/2019/page_68.pdf-1,General Mills,what is the sales growth rate from 2017 to 2018?
+naive,raw_question,GIS/2019/page_68.pdf-2,General Mills,what was the percent of the change in the net sales from 2017 to 2018
+naive,raw_question,GPN/2008/page_78.pdf-1,Global Payments,what is the average amortization expense related to customer-related intangible assets?
+naive,raw_question,GPN/2008/page_78.pdf-2,Global Payments,what percentage of net assets acquired was considered goodwill?
+naive,raw_question,GPN/2008/page_78.pdf-3,Global Payments,what portion of the net assets acquired is related to goodwill?
+naive,raw_question,GPN/2008/page_78.pdf-4,Global Payments,what percentage of net assets acquired was considered goodwill?
+naive,raw_question,GPN/2010/page_89.pdf-1,Global Payments,in 2009 what was the percentage change in the non-vested at may 31 2009
+naive,raw_question,GPN/2013/page_87.pdf-1,Global Payments,"what is the total fair value of the granted shares in 2013 , ( in thousands ) ?"
+naive,raw_question,GPN/2013/page_87.pdf-3,Global Payments,what is the net change of the total fair value balance of non-vested shares during 2013?
+naive,raw_question,GPN/2013/page_92.pdf-2,Global Payments,what is the percentage change in the expected minimum payments from 2014 to 2015?
+naive,raw_question,GPN/2014/page_92.pdf-1,Global Payments,"what is the total value of securities issued and approved by security holders , ( in millions ) ?"
+naive,raw_question,GPN/2014/page_92.pdf-2,Global Payments,"what is the total value of securities approved by security holders but net yer issued , ( in millions ) ?"
+naive,raw_question,GRMN/2006/page_68.pdf-1,Garmin,what is the decrease observed in the operating leases with payments due to 3-5 years and payments due to more than 5 years?
+naive,raw_question,GRMN/2006/page_68.pdf-2,Garmin,"considering the payments due to less than a year , what is the percentage of purchase obligations concerning the total expenses?"
+naive,raw_question,GRMN/2008/page_73.pdf-1,Garmin,"considering the contractual obligations in which payments due by 1-3 years , what is the percentage of the operating leases in relation to the total obligations?"
+naive,raw_question,GS/2012/page_142.pdf-2,Goldman Sachs,"in millions for 2012 2011 , what was maximum collateral posted?"
+naive,raw_question,GS/2012/page_142.pdf-3,Goldman Sachs,what was the percentage change in collateral posted between 2011 and 2012?
+naive,raw_question,GS/2013/page_149.pdf-1,Goldman Sachs,what was the percentage change in net derivative liabilities under bilateral agreements from 2012 to 2013?
+naive,raw_question,GS/2013/page_149.pdf-2,Goldman Sachs,what was the percentage change in collateral posted from 2012 to 2013?
+naive,raw_question,GS/2013/page_149.pdf-4,Goldman Sachs,"in millions for 2013 and 2012 , what was the minimum collateral posted?"
+naive,raw_question,GS/2013/page_63.pdf-1,Goldman Sachs,"in millions for 2013 and 2012 , what was average total assets?"
+naive,raw_question,GS/2013/page_63.pdf-2,Goldman Sachs,what was the change in millions of total assets from 2012 to 2013?
+naive,raw_question,GS/2013/page_63.pdf-3,Goldman Sachs,what was the change in millions of total shareholders' equity from 2012 to 2013?
+naive,raw_question,GS/2014/page_165.pdf-1,Goldman Sachs,what percentage of total other liabilities and accrued expenses in 2013 are due to compensation and benefits?
+naive,raw_question,GS/2015/page_188.pdf-1,Goldman Sachs,what percentage of future minimum rental payments are due after 2020?
+naive,raw_question,GS/2015/page_188.pdf-2,Goldman Sachs,what percentage of future minimum rental payments are due in 2018?
+naive,raw_question,GS/2015/page_188.pdf-3,Goldman Sachs,"for future lease payments , what percent was due in 2021 and thereafter?"
+naive,raw_question,GS/2015/page_188.pdf-4,Goldman Sachs,"in billions , what was the total for 2015 and 2014 relating to commitments to invest in funds managed by the firm?"
+naive,raw_question,GS/2017/page_179.pdf-1,Goldman Sachs,what was the percentage change in dividends declared per common share between 2015 and 2016?
+naive,raw_question,GS/2017/page_179.pdf-2,Goldman Sachs,what was the percentage change in dividends declared per common share between 2016 and 2017?
+naive,raw_question,GS/2018/page_78.pdf-1,Goldman Sachs,"in billions for 2018 , 2017 , and 2016 , what was the lowest amount of alternative investments?"
+naive,raw_question,GS/2018/page_78.pdf-2,Goldman Sachs,"what are the net revenues in investment management in 2016 , in billions?"
+naive,raw_question,HIG/2004/page_140.pdf-2,The Hartford,what is the total effect of reclassifying certain separate accounts to general account on the net income and other comprehensive income?
+naive,raw_question,HII/2015/page_121.pdf-4,Huntington Ingalls,what was the operating margin in the 4th quarter
+naive,raw_question,HOLX/2009/page_127.pdf-2,Hologic,what portion of the total estimated purchase price is paid in cash?
+naive,raw_question,HWM/2015/page_173.pdf-2,Alcoa,what was the increase in the settlements with tax authorities as a percent of the tax liabilities observed during 2013 and 2014?
+naive,raw_question,ILMN/2008/page_82.pdf-2,Illumina,what was the value of the shares exercised in 2011
+naive,raw_question,IP/2006/page_35.pdf-2,International Paper,in 2005 what percentage of capital spending from continuing operations was due to consumer packaging?
+naive,raw_question,IP/2009/page_45.pdf-4,International Paper,"considering the years 2010-2011 , what is the percentual increase observed in the maturities of long-term debt?"
+naive,raw_question,IP/2009/page_84.pdf-2,International Paper,what was the percentage rent increase between 2008 and 2009?
+naive,raw_question,IP/2009/page_84.pdf-3,International Paper,"at december 31 , 2009 , total future minimum commitments under existing non-cancelable leases and purchase obligations what was the percent of the lease obligations compared to the purchase obligations in 2012"
+naive,raw_question,IPG/2006/page_77.pdf-1,Interpublic Group,what is the total interest expense incurred by the senior unsecured notes that was redeemed in august 2005?
+naive,raw_question,IPG/2008/page_72.pdf-3,Interpublic Group,what is the percentage increase from beginning to end of 2008 in unrecognized tax benefits?
+naive,raw_question,IPG/2017/page_92.pdf-2,Interpublic Group,what is the percentage decrease in total contingent acquisition payments from 2018-2019?
+naive,raw_question,JKHY/2019/page_18.pdf-2,Jack Henry & Associates,what was the 5 year total return for jkhy?
+naive,raw_question,KHC/2018/page_132.pdf-2,Kraft Heinz,"in july and august 2018 , what percent of debt carrying debt in december did they pay off?"
+naive,raw_question,LMT/2012/page_73.pdf-1,Lockheed Martin,what was the ratio of the shares in 2012 to 2011 that were excluded in the calculation of the diluted earnings due to the anti-dilute nature
+naive,raw_question,LMT/2014/page_50.pdf-1,Lockheed Martin,what was the percent of the increase in the backlog from 2012 to 2013
+naive,raw_question,LMT/2014/page_50.pdf-2,Lockheed Martin,what was the change in millions in backlog at year-end between 2013 and 2014?
+naive,raw_question,LMT/2015/page_89.pdf-2,Lockheed Martin,what was the percentage change in net earnings from continuing operations from 2014 to 2015?
+naive,raw_question,LMT/2015/page_89.pdf-3,Lockheed Martin,what was the percentage change in diluted earnings per common share from continuing operations from 2014 to 2015?
+naive,raw_question,LMT/2015/page_89.pdf-4,Lockheed Martin,in november 2015 what was the percent of the costs associated with issuing of the notes under the 364-day facility used to finance the acquisition
+naive,raw_question,MKTX/2012/page_42.pdf-1,MarketAxess,by how much did the high of mktx stock increase from 2011 to march 2012?
+naive,raw_question,MKTX/2012/page_42.pdf-3,MarketAxess,by how much did the low of mktx stock increase from 2011 to march 2012?
+naive,raw_question,MMM/2007/page_23.pdf-2,3M,in 2007 what was the ratio of the interest expense to the interest income
+naive,raw_question,MO/2016/page_19.pdf-3,Altria,what is the roi of an investment in altria group inc . from december 2011 to december 2013?
+naive,raw_question,MRK/2013/page_125.pdf-2,Merck,"considering the years 2011-2013 , what is the average value of settlements?"
+naive,raw_question,MRK/2013/page_125.pdf-4,Merck,what was the percentual decrease observed in the liabilities for accrued interest and penalties during 2012 and 2013?
+naive,raw_question,MRO/2003/page_84.pdf-2,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,raw_question,MRO/2003/page_84.pdf-3,Marathon Oil,by what percentage did protect carrying values of excess inventories increase from 2002 to 2003?
+naive,raw_question,MRO/2004/page_46.pdf-1,Marathon Oil,what percentage of total number of shares purchased were repurchased in open-market transactions?
+naive,raw_question,MRO/2004/page_46.pdf-2,Marathon Oil,how many total shares were repurchase in the periods 11/01/04 2013 11/30/04 and \\n12/01/04 2013 12/31/04?
+naive,raw_question,MRO/2004/page_46.pdf-4,Marathon Oil,for the periods 10/01/04 2013 10/31/04 and 11/01/04 2013 11/30/04 what were the average price paid per share?
+naive,raw_question,MRO/2013/page_19.pdf-3,Marathon Oil,"what was average worldwide net acreage expiring in the total three year period , in millions?"
+naive,raw_question,NCLH/2018/page_97.pdf-1,Norwegian Cruise Line,what is the percentage change in accred interest liability in 2018 compare to 2017?
+naive,raw_question,NKE/2009/page_43.pdf-1,Nike,"what is the total amount , in millions of dollars , outstanding in 2009?"
+naive,raw_question,PKG/2002/page_52.pdf-1,Packaging Corporation of America,"what is the total value of the balance of options as of january 1 , 2000 , in millions?"
+naive,raw_question,PNC/2008/page_122.pdf-2,PNC,"for 2008 across the three categories , what were the average mount of liabilities in millions?"
+naive,raw_question,PNC/2012/page_247.pdf-3,PNC,by what percentage did the potential maximum exposure decrease by the end of 2012?
+naive,raw_question,PNC/2012/page_68.pdf-1,PNC,by what percentage did total residential mortgages increase from 2011 to 2012?
+naive,raw_question,PNC/2015/page_93.pdf-1,PNC,"for interest only products , what percent of the total was due in 2020 and thereafter?"
+naive,raw_question,PPG/2018/page_85.pdf-1,PPG,are the 2018 environmental reserves greater than asbestos-related claim reserves?
+naive,raw_question,RCL/2012/page_75.pdf-1,Royal Caribbean,"assuming each continent has the same number of destinations , approximately how many destinations does each continent have?"
+naive,raw_question,RCL/2012/page_75.pdf-2,Royal Caribbean,what was the percentage increase in the port call costs included from 2011 to 2012
+naive,raw_question,RCL/2012/page_75.pdf-3,Royal Caribbean,what was the percentage increase in port costs from 2010 to 2012
+naive,raw_question,RSG/2010/page_98.pdf-2,Republic Services,"as of december 31 , 2010 what was the ratio of the restricted cash and restricted marketable securities to the allowance for doubtful accounts"
+naive,raw_question,RSG/2013/page_123.pdf-2,Republic Services,what was the growth of the weighted-average estimated fair values of stock options granted from 2012 to 2013
+naive,raw_question,RSG/2016/page_139.pdf-2,Republic Services,"as of december 31 , 2016 what was the percent of the outstanding authorized purchase capacity of the the october 2015 plan"
+naive,raw_question,SNA/2007/page_69.pdf-3,Snap-on,what was the percentage change in the minority interest from 2005 to 2006
+naive,raw_question,SNA/2012/page_110.pdf-3,Snap-on,"what is the total fair value of the non-vested performance awards at beginning of year , ( in thousands ) ?"
+naive,raw_question,SNA/2018/page_31.pdf-1,Snap-on,for the quarter ended 12/29/2018 what was the percent of the total shares bought after 11/25/2018
+naive,raw_question,STT/2007/page_111.pdf-1,State Street,what is the percentage change in the the balance of cash and u.s . government securities from 2006 to 2007?
+naive,raw_question,STT/2007/page_111.pdf-3,State Street,what is the growth rate in the balance of standby letters of credit from 2006 to 2007?
+naive,raw_question,STT/2007/page_111.pdf-4,State Street,what is the percent change in indemnified securities financing between 2006 and 2007?
+naive,raw_question,STT/2009/page_127.pdf-3,State Street,what was the percent change in net unrealized loss on available-for-sale securities between 2008 and 2009?
+naive,raw_question,UNP/2007/page_25.pdf-2,Union Pacific,what was the percentage increase in the cash provided by operating activities from 2006 to 2007
+naive,raw_question,UNP/2010/page_21.pdf-3,Union Pacific,"had all four quarters of 2010 had the same number of total shares purchased , how many total shares were purchased in 2010?"
+naive,raw_question,UNP/2010/page_21.pdf-4,Union Pacific,how much more was spent on shares in nov 2010 than dec 2010?
+naive,raw_question,UNP/2011/page_33.pdf-3,Union Pacific,what was the change in millions of average equity from 2010 to 2011?
+naive,raw_question,UNP/2011/page_33.pdf-4,Union Pacific,what was the change in millions of average equity from 2009 to 2010?
+naive,raw_question,UNP/2015/page_56.pdf-2,Union Pacific,what is the percent of the network route in miles that is not leased but owned by the company
+naive,raw_question,UNP/2016/page_52.pdf-3,Union Pacific,what percentage of total operating revenues from 2014-2016 is the revenue from coal?
+naive,raw_question,UPS/2007/page_49.pdf-1,UPS,"what is the total in millions of expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007?"
+naive,raw_question,UPS/2007/page_49.pdf-4,UPS,"what percentage of the total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2007 , is pension fundings?"
+naive,raw_question,UPS/2007/page_98.pdf-2,UPS,what is the average expected dividend per share in 2007?
+naive,raw_question,UPS/2010/page_52.pdf-1,UPS,"what percentage of total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2010 are due in 2012?"
+naive,raw_question,UPS/2010/page_52.pdf-2,UPS,"what percentage of total expected cash outflow to satisfy contractual obligations and commitments as of december 31 , 2010 are due in 2013?"
+naive,raw_question,UPS/2016/page_114.pdf-1,UPS,what was the change in millions of vehicles from 2015 to 2016?
+naive,raw_question,UPS/2016/page_114.pdf-2,UPS,what was the change in millions of buildings from 2015 to 2016?
+naive,raw_question,VRTX/2006/page_111.pdf-4,Vertex Pharmaceuticals,what was the ratio of the total property and equipment net in 2006 to 2005
+naive,raw_question,WRK/2018/page_107.pdf-5,WestRock,what was the percentage change in the balance at end of fiscal year for the gross unrecognized tax benefits
+naive,raw_question,ZBH/2009/page_58.pdf-4,Zimmer,what percent of total contractual obligations was long-term debt?
+naive,raw_question,ZBH/2015/page_57.pdf-2,Zimmer,what was the change in total expense net of tax for share based compensation from 2014 to 2015 in millions?
+naive,raw_question,ZBH/2015/page_57.pdf-3,Zimmer,what was the change in total expense net of tax for share based compensation from 2013 to 2014 in millions?
+table_aware,company_filter,AAL/2016/page_8.pdf-1,American Airlines,what portion of the total full-time employees of mainline operations are pilots and flight crew instructors?
+table_aware,company_filter,AAL/2016/page_8.pdf-2,American Airlines,what portion of the total full-time employees of mainline operations are flight attendants?
+table_aware,company_filter,ABMD/2006/page_43.pdf-2,Abiomed,what percentage of total obligations are operating lease obligations?
+table_aware,company_filter,ADI/2010/page_80.pdf-3,Analog Devices,"based on the table , what would be the annual percent return for the companies investments?"
+table_aware,company_filter,AMT/2012/page_118.pdf-2,American Tower,"pursuant to the agreement , on march 30 , 2012 , what was the approximate price for each site the company purchased in thousands"
+table_aware,company_filter,AMT/2012/page_144.pdf-2,American Tower,"what was the total reclassification of oci into income , in millions , during the years ended december 31 , 2012 , 2011 and 2010?"
+table_aware,company_filter,AMT/2012/page_50.pdf-1,American Tower,"for the quarter december 31 , 2012 what was the percent of the total number of shares purchased in december"
+table_aware,company_filter,AMT/2016/page_49.pdf-2,American Tower,"on february 17 , 2017 , what was the company's market capitalization as reported on the nyse.\\n\\n"
+table_aware,company_filter,BLK/2012/page_145.pdf-2,BlackRock,what percent lower is the carrying value than the fair value?
+table_aware,company_filter,BLK/2012/page_33.pdf-1,BlackRock,what is the percent change in long-term component changes from 12/31/2011 to 12/31/2012?
+table_aware,company_filter,BLL/2006/page_67.pdf-1,Ball Corporation,current assets were what percent of net assets acquired for the can and alcan transactions?
+table_aware,company_filter,BLL/2006/page_67.pdf-3,Ball Corporation,what percentage of total net assets acquired were goodwill?
+table_aware,company_filter,BLL/2006/page_67.pdf-4,Ball Corporation,what percentage of total net assets acquired were property plant and equipment?
+table_aware,company_filter,BLL/2012/page_31.pdf-4,Ball Corporation,the five year total return for the period ending 12/31/2012 on ball corporation stock was how much greater than the same return on the dj us containers & packaging index?
+table_aware,company_filter,C/2008/page_65.pdf-3,Citigroup,what was the percentage change in total managed consumer loans from 2006 to 2007?
+table_aware,company_filter,CB/2010/page_103.pdf-1,ACE Limited,what is the percentage change in the balance of short-term investments in 2010?
+table_aware,company_filter,CB/2010/page_103.pdf-2,ACE Limited,what is the percentage change in the balance of treasury in 2010?
+table_aware,company_filter,CME/2017/page_40.pdf-5,CME Group,did the cme group inc . outperform the s&p 500 over 5 years?
+table_aware,company_filter,ECL/2016/page_52.pdf-3,Ecolab,what portion of the total contractual obligations is due in the next 12 months?
+table_aware,company_filter,ETR/2008/page_442.pdf-1,Entergy,what is the total number of restricted units expected to vest in the upcoming years?
+table_aware,company_filter,ETR/2008/page_442.pdf-2,Entergy,what portion of the total restricted units will vest in 2011?
+table_aware,company_filter,ETR/2016/page_374.pdf-1,Entergy,"how much cost would be passed on to customers , in millions , due to the retail electric price variance over the next 3 years?"
+table_aware,company_filter,ETR/2017/page_372.pdf-3,Entergy,what percent did net revenue decrease between 2016 and 2017?
+table_aware,company_filter,GS/2013/page_72.pdf-1,Goldman Sachs,what is the net effect of adjustment from common shareholders 2019 equity to basel iii cet1?
+table_aware,company_filter,HII/2015/page_121.pdf-4,Huntington Ingalls,what was the operating margin in the 4th quarter
+table_aware,company_filter,HOLX/2006/page_100.pdf-2,Hologic,what percentage of the estimated purchase price is developed technology and know how?
+table_aware,company_filter,HOLX/2007/page_126.pdf-2,Hologic,what portion of the estimated purchase price is derived by the net tangible assets?
+table_aware,company_filter,ILMN/2008/page_86.pdf-2,Illumina,what was the percent of the growth in the company made matching contributions from 2007 to 2008
+table_aware,company_filter,IP/2006/page_35.pdf-1,International Paper,in 2006 what percentage of capital spending from continuing operations was due to consumer packaging?
+table_aware,company_filter,IP/2006/page_35.pdf-2,International Paper,in 2005 what percentage of capital spending from continuing operations was due to consumer packaging?
+table_aware,company_filter,IP/2009/page_84.pdf-1,International Paper,what was the percentage rent increase between 2007 and 2008?
+table_aware,company_filter,IP/2009/page_84.pdf-2,International Paper,what was the percentage rent increase between 2008 and 2009?
+table_aware,company_filter,IPG/2008/page_72.pdf-3,Interpublic Group,what is the percentage increase from beginning to end of 2008 in unrecognized tax benefits?
+table_aware,company_filter,JPM/2005/page_80.pdf-1,JPMorgan Chase,"for the year ended december 31 2005 , what was the midpoint earnings exposure between a 100bp and 200bp change in interest rates ( in us$ m ) ?"
+table_aware,company_filter,JPM/2009/page_175.pdf-3,JPMorgan Chase,in 2008 what was the ratio of the trading assets derivatives - receivables to the payables
+table_aware,company_filter,JPM/2010/page_281.pdf-2,JPMorgan Chase,"as of december 31 , 2009 , what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+table_aware,company_filter,JPM/2010/page_281.pdf-3,JPMorgan Chase,"as of december 31 , 2010 what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+table_aware,company_filter,MO/2014/page_39.pdf-1,Altria,what is the higher pricing as a percentage of the operating companies income increase?
+table_aware,company_filter,MO/2014/page_39.pdf-2,Altria,what are the npm adjustment items as a percentage of the operating companies income increase?
+table_aware,company_filter,MRO/2003/page_84.pdf-1,Marathon Oil,"for natural gas options in place to manage the price risk , what is the change in the percentage of the anticipated natural gas purchases hedged between the first quarter of 2004 and the second quarter of 2004?"
+table_aware,company_filter,MRO/2004/page_46.pdf-2,Marathon Oil,how many total shares were repurchase in the periods 11/01/04 2013 11/30/04 and \\n12/01/04 2013 12/31/04?
+table_aware,company_filter,MRO/2004/page_46.pdf-4,Marathon Oil,for the periods 10/01/04 2013 10/31/04 and 11/01/04 2013 11/30/04 what were the average price paid per share?
+table_aware,company_filter,MRO/2006/page_93.pdf-2,Marathon Oil,was the fin 47 liability greater on december 31 2004 than december 31 2005?
+table_aware,company_filter,MRO/2011/page_108.pdf-2,Marathon Oil,what were total development costs in millions for the three year period?
+table_aware,company_filter,MSI/2014/page_76.pdf-2,Motorola Solutions,what is the percent change in number of shares purchased by employees between 2013 and 2014?
+table_aware,company_filter,RSG/2010/page_57.pdf-1,Republic Services,what was the ratio of the 5.000% ( 5.000 % ) to 6.200% ( 6.200 % ) the senior notes in march 2010
+table_aware,company_filter,SNA/2013/page_84.pdf-3,Snap-on,what percentage of trade and other accounts receivable are considered as doubtful receivables in 2013
+table_aware,company_filter,UNP/2007/page_25.pdf-1,Union Pacific,what was the operating expenses in 2006 in millions
+table_aware,company_filter,UNP/2010/page_21.pdf-2,Union Pacific,for the quarter ended december 312010 what was percent of the total number of shares attested to upc by employees to pay stock option exercise prices
+table_aware,company_filter,UNP/2016/page_52.pdf-4,Union Pacific,"what is the mathematical range for chemical revenue from 2014-2016 , in millions?"
+table_aware,company_filter,V/2008/page_180.pdf-3,Visa,what amount is expected to be paid for support incentives in the next three years?
+table_aware,main,AAL/2010/page_72.pdf-3,American Airlines,what is the total amount expected to be paid for pensions and retiree medical and other in the next 12 months?
+table_aware,main,ABMD/2012/page_79.pdf-1,Abiomed,"what was total rent expense for fiscal years 2010 to 2012 , in millions?"
+table_aware,main,ADBE/2008/page_74.pdf-1,Adobe,what is the yearly amortization rate for the purchased technology?
+table_aware,main,ADBE/2008/page_74.pdf-4,Adobe,what is the yearly amortization rate for the trademarks?
+table_aware,main,AES/2001/page_33.pdf-3,AES Corporation,what was the 2001 first quarter average of high and low stock prices?
+table_aware,main,AES/2001/page_85.pdf-2,AES Corporation,"prior to the first remarketing date , what is the annual interest cost on the remarketable or redeemable securities ( 2018 2018roars 2019 2019 ) ?"
+table_aware,main,AES/2002/page_128.pdf-1,AES Corporation,total discontinued operations represent what percentage of total future minimum lease commitments?
+table_aware,main,AES/2002/page_128.pdf-4,AES Corporation,what was the average rental expense in millions for 2000 through 2002?
+table_aware,main,AMT/2012/page_118.pdf-2,American Tower,"pursuant to the agreement , on march 30 , 2012 , what was the approximate price for each site the company purchased in thousands"
+table_aware,main,AMT/2012/page_144.pdf-2,American Tower,"what was the total reclassification of oci into income , in millions , during the years ended december 31 , 2012 , 2011 and 2010?"
+table_aware,main,AMT/2012/page_50.pdf-1,American Tower,"for the quarter december 31 , 2012 what was the percent of the total number of shares purchased in december"
+table_aware,main,AMT/2016/page_49.pdf-2,American Tower,"on february 17 , 2017 , what was the company's market capitalization as reported on the nyse.\\n\\n"
+table_aware,main,ANSS/2012/page_93.pdf-4,Ansys,"what is the total amount incurred , in millions , from lease rental expenses related to the company's executive offices from 2010-2012?"
+table_aware,main,AON/2018/page_87.pdf-2,Aon,"what is the decrease observed in the additions for tax positions of prior years , in millions?"
+table_aware,main,AWK/2014/page_121.pdf-2,American Water Works,what was the percentage change in deferred tax assets and regulatory assets from 2013 to 2014
+table_aware,main,C/2018/page_175.pdf-1,Citigroup,what was the percent change of the principal transactions revenue associated with interest rate risks from 2016 to 2017
+table_aware,main,CB/2010/page_83.pdf-1,ACE Limited,what is the change in fair value of financial market instruments as part of the hedging strategy during 2010?
+table_aware,main,CB/2010/page_83.pdf-2,ACE Limited,what is the percent change in the fair value financial market instruments as part of the hedging strategy during 2010 compare to 2009?
+table_aware,main,CDNS/2018/page_66.pdf-4,Cadence Design Systems,"what is the net effect of the cumulative effect adjustments , net of income tax effects , to beginning retained earnings for new accounting standards adopted by cadence on the retained earnings balance as adjusted for december 30 , 2017 , in thousands?"
+table_aware,main,CDW/2015/page_93.pdf-4,CDW,"had all potential common shares been included along with the diluted weighted-average shares outstanding for the year ended dec 31 , 2015 , how many total diluted weighted-average shares would there have been?"
+table_aware,main,CE/2016/page_19.pdf-1,Celanese,what is the total research and development for the year 2014 through 2016 in millions
+table_aware,main,CE/2016/page_19.pdf-2,Celanese,what is the net change in the amount spent for research and development in 2015 compare to 2014?
+table_aware,main,DXC/2018/page_56.pdf-2,DXC Technology,in fiscal 2018 what percentage of total costs and expenses was selling general and administrative ( excludes depreciation and amortization and restructuring costs ) ?
+table_aware,main,ECL/2016/page_52.pdf-1,Ecolab,"what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?"
+table_aware,main,ETR/2016/page_374.pdf-1,Entergy,"how much cost would be passed on to customers , in millions , due to the retail electric price variance over the next 3 years?"
+table_aware,main,ETR/2017/page_372.pdf-3,Entergy,what percent did net revenue decrease between 2016 and 2017?
+table_aware,main,FIS/2016/page_31.pdf-3,Fidelity National Information Services,what is the total return if $ 100000 are invested in s&p500 in 12/11 and sold in 12/16?
+table_aware,main,FIS/2016/page_45.pdf-1,Fidelity National Information Services,what is the percentage increase in cash flows from operations from 2015 to 2016?
+table_aware,main,FIS/2016/page_45.pdf-3,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2015 to 2016?
+table_aware,main,FIS/2016/page_45.pdf-4,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2014 to 2015?
+table_aware,main,FIS/2016/page_9.pdf-3,Fidelity National Information Services,what percent of total consolidated revenues in 2016 was the gfs segment?
+table_aware,main,GRMN/2006/page_68.pdf-2,Garmin,"considering the payments due to less than a year , what is the percentage of purchase obligations concerning the total expenses?"
+table_aware,main,GS/2013/page_72.pdf-1,Goldman Sachs,what is the net effect of adjustment from common shareholders 2019 equity to basel iii cet1?
+table_aware,main,GS/2013/page_72.pdf-2,Goldman Sachs,what is the percentage change in common shareholders 2019 equity due to the adjustments presented in the table to reach basel iii cet1?
+table_aware,main,HUM/2014/page_44.pdf-1,Humana,what was the percent of the change in the stock price performance for hum from 2010 to 2011
+table_aware,main,IP/2009/page_84.pdf-4,International Paper,what was the sum of the temporary differences between 2007 and 2009 in billions
+table_aware,main,JPM/2005/page_80.pdf-1,JPMorgan Chase,"for the year ended december 31 2005 , what was the midpoint earnings exposure between a 100bp and 200bp change in interest rates ( in us$ m ) ?"
+table_aware,main,JPM/2009/page_175.pdf-3,JPMorgan Chase,in 2008 what was the ratio of the trading assets derivatives - receivables to the payables
+table_aware,main,JPM/2010/page_281.pdf-2,JPMorgan Chase,"as of december 31 , 2009 , what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+table_aware,main,JPM/2010/page_281.pdf-3,JPMorgan Chase,"as of december 31 , 2010 what percentage of the collateral that it was able to sell , repledge , deliver , or otherwise use was actually used for these purposes?"
+table_aware,main,KHC/2018/page_132.pdf-2,Kraft Heinz,"in july and august 2018 , what percent of debt carrying debt in december did they pay off?"
+table_aware,main,MO/2014/page_39.pdf-1,Altria,what is the higher pricing as a percentage of the operating companies income increase?
+table_aware,main,MO/2014/page_39.pdf-2,Altria,what are the npm adjustment items as a percentage of the operating companies income increase?
+table_aware,main,MRO/2003/page_84.pdf-1,Marathon Oil,"for natural gas options in place to manage the price risk , what is the change in the percentage of the anticipated natural gas purchases hedged between the first quarter of 2004 and the second quarter of 2004?"
+table_aware,main,MRO/2004/page_46.pdf-2,Marathon Oil,how many total shares were repurchase in the periods 11/01/04 2013 11/30/04 and \\n12/01/04 2013 12/31/04?
+table_aware,main,MRO/2004/page_46.pdf-4,Marathon Oil,for the periods 10/01/04 2013 10/31/04 and 11/01/04 2013 11/30/04 what were the average price paid per share?
+table_aware,main,MRO/2007/page_136.pdf-2,Marathon Oil,"as of december 31 , 2007 , how much unrecognized compensation cost related to restricted stock awards is expected to be recognized in 1 year , in millions?"
+table_aware,main,MRO/2011/page_108.pdf-2,Marathon Oil,what were total development costs in millions for the three year period?
+table_aware,main,MSI/2008/page_69.pdf-2,Motorola Solutions,what was the percentage decline in the operating loss from 2007 to 2008
+table_aware,main,NCLH/2018/page_64.pdf-4,Norwegian Cruise Line,how much did interest with libor change from year 1 to years 3-5?
+table_aware,main,NKE/2009/page_43.pdf-1,Nike,"what is the total amount , in millions of dollars , outstanding in 2009?"
+table_aware,main,NWS/2019/page_116.pdf-1,News Corp,what was the value in millions of non cash assets for the transaction in which opcity was acquired?
+table_aware,main,PNC/2012/page_100.pdf-3,PNC,"how many total private investor repurchase claims were there in 2011 and 2012 combined , in millions?"
+table_aware,main,PNC/2012/page_174.pdf-2,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+table_aware,main,PNC/2012/page_174.pdf-4,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+table_aware,main,PPG/2006/page_42.pdf-4,PPG,what was the change in millions in the reserve for product warranties from 2005 to 2006?
+table_aware,main,RCL/2012/page_75.pdf-2,Royal Caribbean,what was the percentage increase in the port call costs included from 2011 to 2012
+table_aware,main,RSG/2010/page_57.pdf-1,Republic Services,what was the ratio of the 5.000% ( 5.000 % ) to 6.200% ( 6.200 % ) the senior notes in march 2010
+table_aware,main,STT/2007/page_111.pdf-1,State Street,what is the percentage change in the the balance of cash and u.s . government securities from 2006 to 2007?
+table_aware,main,TMUS/2017/page_29.pdf-3,T-Mobile,what is the approximate size of each data center leased in square feet
+table_aware,main,UA/2007/page_70.pdf-2,Under Armour,in november 2005 what was the percent of the stock issue costs to the company proceeds
+table_aware,main,UAA/2016/page_42.pdf-3,Under Armour,what was the percentage change in inventories from 2015 to 2016?
+table_aware,main,UNP/2016/page_52.pdf-3,Union Pacific,what percentage of total operating revenues from 2014-2016 is the revenue from coal?
+table_aware,main,V/2008/page_180.pdf-2,Visa,what portion of the total support incentives is expected to be paid in 2009?
+table_aware,main,V/2008/page_180.pdf-3,Visa,what amount is expected to be paid for support incentives in the next three years?
+table_aware,main,VRTX/2006/page_111.pdf-1,Vertex Pharmaceuticals,what was the percent change in depreciation and amortization expense between 2004 and 2005?
+table_aware,raw_question,AAL/2010/page_72.pdf-4,American Airlines,"what was the percentage decline in recorded international slot and route authorities to $ 708 million from $ 736 million as of december 31 , 2010 and 2009 , respectively ."
+table_aware,raw_question,AAL/2016/page_8.pdf-1,American Airlines,what portion of the total full-time employees of mainline operations are pilots and flight crew instructors?
+table_aware,raw_question,ABC/2005/page_49.pdf-1,AmerisourceBergen,"without employee severance costs in 2004 and 2005 , what would have been the increase in net income in millions?\\n\\n"
+table_aware,raw_question,ABMD/2012/page_79.pdf-1,Abiomed,"what was total rent expense for fiscal years 2010 to 2012 , in millions?"
+table_aware,raw_question,ADBE/2008/page_74.pdf-4,Adobe,what is the yearly amortization rate for the trademarks?
+table_aware,raw_question,ADI/2019/page_29.pdf-3,Analog Devices,"in 2008 , how much percent did the board of directors increase the share repurchase program ."
+table_aware,raw_question,AES/2001/page_85.pdf-2,AES Corporation,"prior to the first remarketing date , what is the annual interest cost on the remarketable or redeemable securities ( 2018 2018roars 2019 2019 ) ?"
+table_aware,raw_question,AES/2002/page_128.pdf-1,AES Corporation,total discontinued operations represent what percentage of total future minimum lease commitments?
+table_aware,raw_question,AES/2002/page_128.pdf-4,AES Corporation,what was the average rental expense in millions for 2000 through 2002?
+table_aware,raw_question,AMT/2012/page_144.pdf-2,American Tower,"what was the total reclassification of oci into income , in millions , during the years ended december 31 , 2012 , 2011 and 2010?"
+table_aware,raw_question,AMT/2012/page_50.pdf-1,American Tower,"for the quarter december 31 , 2012 what was the percent of the total number of shares purchased in december"
+table_aware,raw_question,ANSS/2012/page_93.pdf-4,Ansys,"what is the total amount incurred , in millions , from lease rental expenses related to the company's executive offices from 2010-2012?"
+table_aware,raw_question,AON/2018/page_87.pdf-1,Aon,what was the percent of the increase in the company recorded a liability for interest and penalties from 2017 to 2018
+table_aware,raw_question,AON/2018/page_87.pdf-2,Aon,"what is the decrease observed in the additions for tax positions of prior years , in millions?"
+table_aware,raw_question,AOS/2010/page_18.pdf-1,A. O. Smith,what was the difference in the cumulative total return for a o smith corp and the s&p small cap 600 index for the five year period ended 12/31/10?
+table_aware,raw_question,AOS/2010/page_18.pdf-2,A. O. Smith,what was the difference in the cumulative total return for a o smith corp and the russell 1000 index for the five year period ended 12/31/10?
+table_aware,raw_question,AWK/2014/page_121.pdf-2,American Water Works,what was the percentage change in deferred tax assets and regulatory assets from 2013 to 2014
+table_aware,raw_question,CB/2010/page_83.pdf-1,ACE Limited,what is the change in fair value of financial market instruments as part of the hedging strategy during 2010?
+table_aware,raw_question,CB/2010/page_83.pdf-2,ACE Limited,what is the percent change in the fair value financial market instruments as part of the hedging strategy during 2010 compare to 2009?
+table_aware,raw_question,CDNS/2018/page_66.pdf-2,Cadence Design Systems,"what is the percentage net effect of the cumulative effect adjustments , net of income tax effects , to beginning retained earnings for new accounting standards adopted by cadence on the retained earnings balance as adjusted for december 30 , 2017?"
+table_aware,raw_question,CDNS/2018/page_66.pdf-4,Cadence Design Systems,"what is the net effect of the cumulative effect adjustments , net of income tax effects , to beginning retained earnings for new accounting standards adopted by cadence on the retained earnings balance as adjusted for december 30 , 2017 , in thousands?"
+table_aware,raw_question,CDW/2015/page_93.pdf-3,CDW,"if the anti-dilutive common shares were not excluded from the diluted weighted-average shares outstanding for the year ended december 31 , 2015 , what would the total diluted weighted-average shares outstanding be , in millions?"
+table_aware,raw_question,CDW/2015/page_93.pdf-4,CDW,"had all potential common shares been included along with the diluted weighted-average shares outstanding for the year ended dec 31 , 2015 , how many total diluted weighted-average shares would there have been?"
+table_aware,raw_question,CE/2013/page_16.pdf-1,Celanese,what is the growth rate in dividends received in 2013 compare to 2012?
+table_aware,raw_question,CE/2013/page_16.pdf-2,Celanese,what is the growth rate in dividends received in 2012 compare to 2011?
+table_aware,raw_question,CE/2016/page_19.pdf-1,Celanese,what is the total research and development for the year 2014 through 2016 in millions
+table_aware,raw_question,CE/2016/page_19.pdf-2,Celanese,what is the net change in the amount spent for research and development in 2015 compare to 2014?
+table_aware,raw_question,D/2002/page_87.pdf-4,Dominion,what is the growth rate in rental expense included in other operations and maintenance expense in 2001 compare to 2000?
+table_aware,raw_question,DRE/2005/page_30.pdf-1,Duke Realty,what was the ratio of the after tax gains of in 2004 compared to 2003 in dollars
+table_aware,raw_question,ECL/2016/page_52.pdf-1,Ecolab,"what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?"
+table_aware,raw_question,ETR/2004/page_239.pdf-1,Entergy,what is the decrease in gross wholesale revenue as a percentage of 2003 net revenue?
+table_aware,raw_question,ETR/2016/page_150.pdf-2,Entergy,"relating to the texas securitization bonds , what were the total amounts ( millions ) of the issuance when considering the transaction costs and the related deferred income tax benefits?"
+table_aware,raw_question,FBHS/2017/page_22.pdf-2,Fortune Brands Home & Security,what was the amount of sales in that went to international markets in millions
+table_aware,raw_question,FBHS/2017/page_83.pdf-1,Fortune Brands Home & Security,"as of december 31 , 2017 what was the value of the granted share awards"
+table_aware,raw_question,FIS/2016/page_31.pdf-3,Fidelity National Information Services,what is the total return if $ 100000 are invested in s&p500 in 12/11 and sold in 12/16?
+table_aware,raw_question,FIS/2016/page_45.pdf-1,Fidelity National Information Services,what is the percentage increase in cash flows from operations from 2015 to 2016?
+table_aware,raw_question,FIS/2016/page_45.pdf-3,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2015 to 2016?
+table_aware,raw_question,FIS/2016/page_45.pdf-4,Fidelity National Information Services,what was the percentage change in cash flows from operations from 2014 to 2015?
+table_aware,raw_question,FIS/2016/page_9.pdf-3,Fidelity National Information Services,what percent of total consolidated revenues in 2016 was the gfs segment?
+table_aware,raw_question,FIS/2016/page_9.pdf-4,Fidelity National Information Services,what percent of total consolidated revenues in 2015 was the gfs segment?
+table_aware,raw_question,GRMN/2006/page_68.pdf-2,Garmin,"considering the payments due to less than a year , what is the percentage of purchase obligations concerning the total expenses?"
+table_aware,raw_question,GS/2013/page_72.pdf-1,Goldman Sachs,what is the net effect of adjustment from common shareholders 2019 equity to basel iii cet1?
+table_aware,raw_question,GS/2014/page_51.pdf-2,Goldman Sachs,what is the percentage change in inventory balance in 2014?
+table_aware,raw_question,GS/2015/page_188.pdf-4,Goldman Sachs,"in billions , what was the total for 2015 and 2014 relating to commitments to invest in funds managed by the firm?"
+table_aware,raw_question,HOLX/2006/page_100.pdf-2,Hologic,what percentage of the estimated purchase price is developed technology and know how?
+table_aware,raw_question,HWM/2015/page_173.pdf-1,Alcoa,how bigger were the interest and penalties concerning the interest income in the year 2015?
+table_aware,raw_question,IP/2006/page_35.pdf-1,International Paper,in 2006 what percentage of capital spending from continuing operations was due to consumer packaging?
+table_aware,raw_question,IP/2006/page_35.pdf-2,International Paper,in 2005 what percentage of capital spending from continuing operations was due to consumer packaging?
+table_aware,raw_question,JPM/2003/page_106.pdf-1,JPMorgan Chase,"what was the ratio of the firm commitments to provide liquidity on asset- specific basis in 2003 compared to 2002 $ 18.0 billion at december 31 , 2003 , and $ 23.5 billion at december 31 , 2002"
+table_aware,raw_question,JPM/2010/page_273.pdf-2,JPMorgan Chase,"in 2010 and 2009 , what was the total fair value in billions of assets segregated for the benefit of securities and futures brokerage customers?"
+table_aware,raw_question,KHC/2018/page_132.pdf-2,Kraft Heinz,"in july and august 2018 , what percent of debt carrying debt in december did they pay off?"
+table_aware,raw_question,MO/2014/page_39.pdf-1,Altria,what is the higher pricing as a percentage of the operating companies income increase?
+table_aware,raw_question,MRO/2003/page_45.pdf-1,Marathon Oil,what were total asphalt sales in millions for the three year period?
+table_aware,raw_question,MRO/2004/page_46.pdf-2,Marathon Oil,how many total shares were repurchase in the periods 11/01/04 2013 11/30/04 and \\n12/01/04 2013 12/31/04?
+table_aware,raw_question,MRO/2004/page_46.pdf-4,Marathon Oil,for the periods 10/01/04 2013 10/31/04 and 11/01/04 2013 11/30/04 what were the average price paid per share?
+table_aware,raw_question,MSI/2008/page_69.pdf-2,Motorola Solutions,what was the percentage decline in the operating loss from 2007 to 2008
+table_aware,raw_question,NCLH/2018/page_64.pdf-2,Norwegian Cruise Line,what is the percentage change in capital expenditures from 2017 to 2018?
+table_aware,raw_question,NCLH/2018/page_64.pdf-4,Norwegian Cruise Line,how much did interest with libor change from year 1 to years 3-5?
+table_aware,raw_question,NKE/2009/page_43.pdf-1,Nike,"what is the total amount , in millions of dollars , outstanding in 2009?"
+table_aware,raw_question,NWS/2019/page_116.pdf-1,News Corp,what was the value in millions of non cash assets for the transaction in which opcity was acquired?
+table_aware,raw_question,PKG/2005/page_74.pdf-2,Packaging Corporation of America,"the company purchased how much in millions during the year ended december 31 , 2004 and during the year ended december 31 , 2003 under purchase agreements?"
+table_aware,raw_question,PNC/2012/page_174.pdf-2,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+table_aware,raw_question,PNC/2012/page_174.pdf-4,PNC,"what was the two-year total for specific reserves in the alll , in millions?"
+table_aware,raw_question,PNC/2012/page_247.pdf-3,PNC,by what percentage did the potential maximum exposure decrease by the end of 2012?
+table_aware,raw_question,PNC/2014/page_111.pdf-2,PNC,"for equity investment balances including unfunded commitments what was the change in millions between december 31 , 2014 and december 31 , 2013/"
+table_aware,raw_question,RCL/2012/page_75.pdf-1,Royal Caribbean,"assuming each continent has the same number of destinations , approximately how many destinations does each continent have?"
+table_aware,raw_question,RCL/2012/page_75.pdf-2,Royal Caribbean,what was the percentage increase in the port call costs included from 2011 to 2012
+table_aware,raw_question,RSG/2010/page_57.pdf-1,Republic Services,what was the ratio of the 5.000% ( 5.000 % ) to 6.200% ( 6.200 % ) the senior notes in march 2010
+table_aware,raw_question,SNA/2007/page_49.pdf-1,Snap-on,"what was the average cash flow provided from operating activities from 2005 to to 2007 $ 231.1 million in 2007 , $ 203.4 million in 2006 , and $ 221.1 million in 2005 ."
+table_aware,raw_question,STT/2007/page_111.pdf-1,State Street,what is the percentage change in the the balance of cash and u.s . government securities from 2006 to 2007?
+table_aware,raw_question,STT/2009/page_25.pdf-1,State Street,what was the percent change in the aggregate net asset values of the direct lending collateral pools between 2007 and 2008?
+table_aware,raw_question,SYY/2006/page_71.pdf-1,Sysco,"what was the percentage change in total rental expense under operating leases from july 2 , 2005 to july 1 , 2006?"
+table_aware,raw_question,SYY/2006/page_71.pdf-2,Sysco,"what was the percentage change in total rental expense under operating leases from july 1 , 2006 to july 2 , 2007?"
+table_aware,raw_question,UA/2007/page_70.pdf-2,Under Armour,in november 2005 what was the percent of the stock issue costs to the company proceeds
+table_aware,raw_question,UAA/2016/page_42.pdf-3,Under Armour,what was the percentage change in inventories from 2015 to 2016?
+table_aware,raw_question,UAA/2016/page_42.pdf-4,Under Armour,what was the percentage change in working capital from 2015 to 2016?
+table_aware,raw_question,UNP/2009/page_35.pdf-2,Union Pacific,what will 2010 operating ratio be if the average 2009 and 2008 increases occur in 2009?
+table_aware,raw_question,V/2008/page_180.pdf-3,Visa,what amount is expected to be paid for support incentives in the next three years?

@@ -1,0 +1,9 @@
+{
+  "protocol_sha256": "6a0a2d077b1d0790b9af6d20b7231570aca7f3070781d5f8d84681c040d08b18",
+  "python": "3.12.15",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "dense_model": "BAAI/bge-base-en-v1.5",
+  "rerank_model": "BAAI/bge-reranker-v2-m3",
+  "context_backend": null
+}
