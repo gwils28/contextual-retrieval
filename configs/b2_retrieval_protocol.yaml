@@ -52,8 +52,8 @@ chunking:
     overlap_tokens: 0
   table_aware:
     text: consecutive sentences grouped up to 200 tokens, never crossing the table
-    table: one chunk per data row, serialized with its column headers
-      ("<row label> | <col header>: <value> | ..."), header row not a separate chunk
+    table: 'one chunk per data row, serialized with its column headers
+      ("<row label> | <col header>: <value> | ..."), header row not a separate chunk'
 
 configs:
   - id: dense
