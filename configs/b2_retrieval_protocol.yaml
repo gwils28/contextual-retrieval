@@ -128,3 +128,9 @@ amendments:
       even when it is data, and using it as a header wrote "$ 2800:" in front of every value;
       38 of 379 test tables (79 questions with table gold) are affected. A first plain run was
       stopped before any metric was read, and is discarded.
+  # Made on 2026-07-22, AFTER the results were seen. It removes a planned run and changes no
+  # reported number.
+  - id: A4
+    change: the Claude Haiku-class reference contextualization is dropped; contexts come only
+      from qwen2.5:7b-instruct (local)
+    reason: owner's decision. The course reports it as a limit (contexts from a 7B open model)

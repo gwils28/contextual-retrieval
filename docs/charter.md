@@ -44,7 +44,7 @@ block therefore starts from fundamentals (embeddings, BM25, IR metrics) before g
 | Statistics | Bootstrap 95 % CIs per metric; paired test between configs on the same queries. |
 | Chunking | **Compare 2 strategies**: naive fixed token window (breaks tables) vs table-aware (row + header). |
 | Dense model | `BAAI/bge-base-en-v1.5` |
-| Lexical | `rank-bm25` (BM25Okapi) |
+| Lexical | BM25 written from scratch (`ragbench.lexical`), tested against `rank-bm25` (BM25Okapi) |
 | Fusion | Reciprocal Rank Fusion, hand-written |
 | Reranker | `BAAI/bge-reranker-v2-m3` (fp16, GPU) — top-N=50 → top-k |
 | LLM | **Hybrid**: local (Ollama in Docker, ~7-8B quantized) to iterate; Claude API for reference runs, behind one abstract interface |
@@ -94,3 +94,7 @@ Based on the owner's article *Claude Code for data science*:
 | 2026-07-17 | Golden set: all 1,147 test questions instead of ~300 | Contextualization cost scales with the corpus, not the queries; more queries = more statistical power for free |
 | 2026-07-17 | Queries prefixed with the company name (`"{company}: {question}"`) | FinQA questions rarely name the company and are ambiguous in a pooled index; no year in the prefix because FinQA folder years do not reliably match fiscal years |
 | 2026-07-17 | Primary metric `pass_all@k` (all gold facts in top-k) | A numeric answer needs all its operands |
+| 2026-07-16 | BM25 written from scratch; `rank-bm25` kept as a test oracle only | Pedagogy (Block 1): every term of the formula is visible and tested |
+| 2026-07-20 | LLM-generated chunk contexts versioned in `data/contexts/` | Regenerating them takes ~1.5 GPU-hours and an LLM is not bit-reproducible; results must be reproducible from the repo |
+| 2026-07-20 | Failure-mode taxonomy (Block 2) reported as exploratory | Defined after the results were seen: it describes failures, never ranks configurations |
+| 2026-07-22 | Block 2: Claude reference contextualization dropped; Qwen 2.5 7B contexts are the only ones | Owner's decision. Recorded as protocol amendment A4; the Claude API remains planned for later blocks |

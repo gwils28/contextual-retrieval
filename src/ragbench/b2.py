@@ -92,7 +92,7 @@ def cmd_contextualize(args) -> None:
     bench = load_bench()
     corpus = bench.chunk(args.strategy)
     if args.backend != "ollama":
-        sys.exit("only the ollama backend is implemented; Claude comes with the API key")
+        sys.exit("only the ollama backend is implemented (protocol amendment A4)")
     generate = ollama_generate(OLLAMA_MODEL)
     start = time.time()
 

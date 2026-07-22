@@ -41,7 +41,8 @@ Our protocol ([`b2_retrieval_protocol.yaml`](../../configs/b2_retrieval_protocol
 - the configurations, their hyperparameters (none tuned on test queries), and the reranker depth;
 - the metrics, the k values, the statistical tests and the multiple-comparison correction.
 
-Three amendments were made during implementation, all **before any metric was read**:
+Three amendments were made during implementation, all **before any metric was read**. A fourth
+(A4, after the results) only drops the planned Claude reference contextualization.
 
 | | What changed | Why |
 |---|---|---|
@@ -335,8 +336,9 @@ them, which is why BM25 alone beats dense under naive chunking (0.735 vs 0.674).
 
 - **Small corpus.** 380 pages pooled in one index. A real document store has far more distractors;
   absolute scores would be lower, and the value of filters and context likely higher.
-- **Local contextualizer.** Contexts come from a 7B open model. The protocol plans a reference run
-  with a Claude Haiku-class model (prompt caching on); it is not done yet.
+- **Local contextualizer.** Contexts come from a 7B open model. A reference run with a Claude
+  Haiku-class model was planned, then dropped (amendment A4): we do not know how much a stronger
+  LLM would add.
 - **Retrieval only.** A retrieved gold chunk does not guarantee a correct answer. Generation is
   measured in a later block.
 - **One table-aware design.** "One chunk per row" lost; other table-aware designs were not tested.
