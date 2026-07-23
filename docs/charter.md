@@ -98,3 +98,6 @@ Based on the owner's article *Claude Code for data science*:
 | 2026-07-20 | LLM-generated chunk contexts versioned in `data/contexts/` | Regenerating them takes ~1.5 GPU-hours and an LLM is not bit-reproducible; results must be reproducible from the repo |
 | 2026-07-20 | Failure-mode taxonomy (Block 2) reported as exploratory | Defined after the results were seen: it describes failures, never ranks configurations |
 | 2026-07-22 | Block 2: Claude reference contextualization dropped; Qwen 2.5 7B contexts are the only ones | Owner's decision. Recorded as protocol amendment A4; the Claude API remains planned for later blocks |
+| 2026-07-23 | Block 3 evaluated on 100 stratified test questions instead of 1,147 | Owner's choice: cuts generation time and cost; wider CIs accepted, non-significant gaps reported as "not shown" |
+| 2026-07-23 | Block 3 prompts and threshold designed on 100 other test questions, not on the dev split | Reuses the versioned test contexts (no new contextualization run); limit: 15 pages are shared with the evaluation set |
+| 2026-07-23 | Block 3: no Claude reference run | Owner's decision; every Block 3 result comes from qwen2.5:7b-instruct |

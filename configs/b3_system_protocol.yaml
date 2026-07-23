@@ -1,0 +1,125 @@
+# Block 3 — Fixed vs agentic RAG protocol.
+# Frozen 2026-07-23 after owner review, BEFORE any generation or agent run.
+# Any later change is recorded in the "amendments" section with its reason.
+
+id: b3-system-v1
+status: frozen
+frozen_on: 2026-07-23
+
+question: >
+  On FinQA, when does a fixed retrieve-then-read pipeline suffice, and when does an agentic
+  retrieval loop (the model drives its own search) pay off? Measured on retrieval and generation
+  separately, with the cost of each option per query.
+
+data:
+  source: FinQA (czyssrs/FinQA), same files and sha256 as configs/b2_retrieval_protocol.yaml
+  corpus: TEST split pages, same pooled index (380 pages) as Block 2
+  # 100 questions instead of 1147: owner's choice to cut generation time and cost, accepting
+  # wider confidence intervals (about +/- 9 points on a rate near 0.5).
+  evaluation: 100 TEST questions, drawn with seed 0, stratified by gold type
+    (table / text / table+text) in proportion to the 1147. Drawn and listed in
+    configs/b3_questions.csv at the freeze (make b3-questions), BEFORE any generation is run.
+    Run once, after the freeze. No prompt or threshold is changed after seeing their outputs.
+  development: 100 OTHER TEST questions (disjoint from the evaluation set, same seed and strata).
+    Prompts, output format, tool descriptions and the escalation threshold are designed here only.
+    Reuses the versioned test contexts (no new contextualization run). Known limit, dev and evaluation
+    questions can share a page, so prompts may fit these pages slightly better than unseen ones.
+  query_form: '"{company_name}: {question}" (Block 2 main setting)'
+  chunking: naive, 200 tokens, contextualized with the versioned Qwen contexts (Block 2 winner)
+
+generator:
+  model: qwen2.5:7b-instruct via Ollama (Docker, GPU), temperature 0, seed 0
+  reference_model: none — no Claude reference run (owner's decision); the course reports that
+    every result comes from a 7B open model
+  output: >
+    JSON {"program": FinQA DSL or null, "operands": [{"value", "chunk_id"}], "status": "answer" |
+    "insufficient_context"}. The program is executed by ragbench (deterministic arithmetic);
+    the LLM never does arithmetic itself.
+  dsl: FinQA operations (add, subtract, multiply, divide, greater, exp, table_max, table_min,
+    table_sum, table_average), references #n to previous steps, constants const_*
+
+systems:
+  - id: oracle_context
+    role: generation upper bound — the generator receives exactly the gold chunks
+    retrieval: none (gold chunks, in page order)
+  - id: fixed
+    role: the default architecture (retrieve-then-read)
+    retrieval: contextual_hybrid_rerank top-10 (Block 2 best, naive chunking)
+    llm_calls: 1
+  - id: agentic
+    role: A-RAG style loop, LangGraph
+    tools:
+      keyword_search: BM25 over contextualized chunks, returns top-5 (id, snippet)
+      semantic_search: dense over contextualized chunks, returns top-5 (id, snippet)
+      chunk_read: full text of one chunk by id
+      page_read: all chunks of the page of a chunk, in order (small-to-big)
+    first_step: the loop starts with the fixed pipeline's top-10 already in context
+      # so the agent can only add evidence, never start from less than `fixed`
+    budget: max 6 tool calls, max 8000 context tokens
+    stop: the model answers, or declares insufficient_context, or the budget is exhausted
+      (budget exhausted -> status insufficient_context; never a forced guess)
+  - id: cascade
+    role: escalation policy — fixed first, agent only when a cheap signal fires
+    escalate_if: fixed returns insufficient_context, OR the grounding check fails, OR the
+      reranker top-1 score < threshold
+    threshold: set on the development questions (the score that flags the 20 % least confident questions), then frozen
+
+metrics:
+  retrieval:  # judged ONLY on the evidence handed to the generator, never on the answer
+    - pass_all_ctx   # all gold chunks present in the final context
+    - pass_any_ctx
+    - context_tokens # bge tokens sent to the generator
+  generation:
+    - exec_accuracy  # executed program result == FinQA exe_ans (rule below)
+    - program_valid  # parses and executes
+    - grounded       # every operand value appears verbatim (after number normalization) in
+                     # the chunk it cites
+    - refusal_rate   # insufficient_context
+    - wrong_answer_rate  # answered, but wrong (the costly error in finance)
+  numeric_match: "abs(pred - gold) <= 0.005 * max(abs(gold), 1); a percentage and its fraction
+    (25 vs 0.25) both accepted; booleans compared as yes/no"
+  diagnosis:
+    # Joins the two stages AFTER both are scored. Each question falls in one cell:
+    - retrieval_hit & correct
+    - retrieval_hit & wrong      # generation failure on good context
+    - retrieval_miss & correct   # lucky, or the gold is not the only valid evidence
+    - retrieval_miss & wrong     # retrieval failure
+  cost:
+    - llm_calls, prompt_tokens, completion_tokens per question (counted by Ollama)
+    - tool_calls per question (agentic)
+    - latency p50 / p95, end to end, batch size 1, warm models
+    - usd_equivalent: tokens x a price table frozen here (source and date recorded), so the
+        local run can be compared with an API deployment; GPU time reported separately
+
+statistics:
+  ci: percentile bootstrap over questions, 10000 resamples, 95 %, seed 0
+  paired_tests: exact McNemar on exec_accuracy for fixed vs agentic, fixed vs cascade,
+    agentic vs cascade; and on wrong_answer_rate for the same pairs
+  multiple_comparisons: Holm across all paired tests
+  minimum_effect_reported_as_gain: significant after Holm at alpha 0.05
+  # With 100 questions only large differences can reach significance. A non-significant
+  # difference is reported as "not shown", never as "no difference".
+  small_strata: a stratum with fewer than 20 questions is reported descriptively (counts, no CI,
+    no test)
+  strata:  # defined now, reported for every system
+    - n_gold_chunks: 1 vs 2+
+    - gold_type: table / text / table+text
+    - fixed_retrieval: hit vs miss at k=10 (known from Block 2; tells whether the agent helps
+        where retrieval failed or where generation failed)
+
+layer_economics:
+  # One table, numbers from Block 2 and Block 3 make targets only.
+  per_layer: [hybrid, reranker, contextual_chunks, agentic_loop]
+  columns: one-time cost (ingestion), per-query cost (latency, tokens), gain in
+    pass_all@10 or exec_accuracy, cost per point gained
+
+expected_outputs:
+  - results table: system -> retrieval metrics, generation metrics, cost
+  - 2x2 diagnosis table per system
+  - paired test table with Holm-adjusted p-values
+  - per-question outcomes and agent traces (jsonl) for error analysis
+  - ADR (blocks/03-system-design/adr-0001-fixed-vs-agentic.md) citing only these numbers
+
+reproduce: make b3   # needs a running Ollama server
+
+amendments: []

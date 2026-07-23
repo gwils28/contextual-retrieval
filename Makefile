@@ -34,3 +34,7 @@ b2-analysis:
 
 # Full Block 2: needs a running Ollama server for the contextualization step.
 b2: b2-plain b2-contextualize b2-contextual b2-report b2-analysis
+
+.PHONY: b3-questions
+b3-questions:
+	uv run python -m ragbench.b3 questions
