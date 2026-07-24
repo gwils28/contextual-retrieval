@@ -16,6 +16,9 @@ from dataclasses import dataclass
 BINARY_OPS = ("add", "subtract", "multiply", "divide", "greater", "exp")
 TABLE_OPS = ("table_max", "table_min", "table_sum", "table_average")
 OPS = BINARY_OPS + TABLE_OPS
+# The only constants FinQA defines; any other ``const_*`` is an invented number.
+_CONSTANT_NAMES = ("1", "2", "3", "4", "5", "6", "7", "9", "10", "100", "1000", "1000000", "m1")
+CONSTANTS = frozenset(f"const_{n}" for n in _CONSTANT_NAMES)
 
 Value = float | str  # str only for the yes/no of ``greater``
 
@@ -48,9 +51,9 @@ def parse(program: str) -> list[Step]:
             label, sep, rest = inner.rpartition(",")
             if not sep or rest.strip() != "none":
                 raise ProgramError(f"table step needs (row label, none): {raw!r}")
-            args = (label.strip(),)
+            args = (label.strip().strip("'\""),)
         else:
-            args = tuple(a.strip() for a in inner.split(","))
+            args = tuple(a.strip().strip("'\"") for a in inner.split(","))
             if len(args) != 2:
                 raise ProgramError(f"{op} takes 2 arguments: {raw!r}")
         steps.append(Step(op, args))
@@ -61,6 +64,8 @@ def to_number(text: str) -> float | None:
     """FinQA rules: commas dropped, ``5%`` -> 0.05, ``const_m1`` -> -1. None if not a number."""
     text = text.replace(",", "").strip()
     if text.startswith("const_"):
+        if text not in CONSTANTS:
+            return None
         text = "-1" if text == "const_m1" else text.removeprefix("const_")
     scale = 1.0
     if text.endswith("%"):
@@ -95,7 +100,7 @@ def execute(program: str, table: tuple[tuple[str, ...], ...] = ()) -> Value:
 
     def operand(arg: str) -> float:
         if arg.startswith("#"):
-            idx = int(arg[1:])
+            idx = int(arg[1:]) if arg[1:].isdigit() else len(results)
             if idx >= len(results) or isinstance(results[idx], str):
                 raise ProgramError(f"bad reference {arg}")
             return results[idx]
@@ -124,7 +129,13 @@ def execute(program: str, table: tuple[tuple[str, ...], ...] = ()) -> Value:
                 raise ProgramError("division by zero")
             results.append(a / b)
         elif step.op == "exp":
-            results.append(a**b)
+            try:
+                value = a**b
+            except (OverflowError, ZeroDivisionError) as e:
+                raise ProgramError(f"exp({a}, {b}): {e}") from e
+            if isinstance(value, complex):
+                raise ProgramError(f"exp({a}, {b}) is not a real number")
+            results.append(value)
         else:  # greater
             results.append("yes" if a > b else "no")
     return results[-1]

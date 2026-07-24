@@ -28,6 +28,11 @@ def test_greater_returns_yes_no():
     assert P.execute("greater(1, 2)") == "no"
 
 
+def test_quotes_around_arguments_are_ignored():
+    assert P.execute("table_sum('net income, as reported', none)", TABLE) == 2100.0
+    assert P.execute('add("1", 2)') == 3.0
+
+
 def test_exp():
     assert P.execute("exp(2, 10)") == 1024.0
 
@@ -46,6 +51,10 @@ def test_table_ops_use_the_row_label_with_commas():
         "add(1)",
         "divide(1, 0)",
         "add(#3, 1)",
+        "add(#const_1336, 1)",  # seen in a Qwen output
+        "add(const_1336, 1)",  # not a FinQA constant
+        "exp(-8, 0.5)",  # complex result
+        "exp(0, -1)",
         "add(apples, 1)",
         "table_sum(missing row, none)",
         "table_sum(dividends, none)",  # "n/a" cell
