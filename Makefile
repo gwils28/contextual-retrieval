@@ -38,3 +38,12 @@ b2: b2-plain b2-contextualize b2-contextual b2-report b2-analysis
 .PHONY: b3-questions
 b3-questions:
 	uv run python -m ragbench.b3 questions
+
+# Development questions only: prompt design (configs/b3_system_protocol.yaml, data.development).
+# Retrieval runs first and frees the GPU before the LLM is loaded (8 GB GPU).
+.PHONY: b3-dev
+b3-dev:
+	uv run python -m ragbench.b3 retrieve --role development
+	uv run python -m ragbench.b3 generate --system oracle_context --role development
+	uv run python -m ragbench.b3 generate --system fixed --role development
+	uv run python -m ragbench.b3 summary --role development

@@ -86,10 +86,15 @@ class Reranker:
         self.texts = texts
         self.batch_size = batch_size
 
-    def rerank(self, query: str, candidates: Sequence[int], k: int) -> list[int]:
+    def scored(self, query: str, candidates: Sequence[int], k: int) -> list[tuple[int, float]]:
+        """Top-k (index, cross-encoder score), best first."""
         if not candidates:
             return []
         pairs = [(query, self.texts[i]) for i in candidates]
         scores = self.model.predict(pairs, batch_size=self.batch_size, show_progress_bar=False)
-        order = np.argsort(-np.asarray(scores), kind="stable")
-        return [int(candidates[i]) for i in order[:k]]
+        scores = np.asarray(scores, dtype=np.float64)
+        order = np.argsort(-scores, kind="stable")
+        return [(int(candidates[i]), float(scores[i])) for i in order[:k]]
+
+    def rerank(self, query: str, candidates: Sequence[int], k: int) -> list[int]:
+        return [i for i, _ in self.scored(query, candidates, k)]
