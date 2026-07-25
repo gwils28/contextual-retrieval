@@ -3,6 +3,7 @@
 python -m ragbench.b3 questions                 # draw the question sets (seed 0)
 python -m ragbench.b3 retrieve --role development  # fixed top-10 + reranker scores (GPU)
 python -m ragbench.b3 generate --system fixed --role development   # needs Ollama
+python -m ragbench.b3 generate --system agentic --role development # needs Ollama
 python -m ragbench.b3 summary --role development   # quick table (no CI), for development only
 
 Retrieval runs first and is saved, then the GPU is freed before the LLM is loaded: on an 8 GB
@@ -33,7 +34,10 @@ SEED = 0
 ROLES = ("development", "evaluation")
 STRATEGY = "naive"  # Block 2 winner, with its versioned Qwen contexts
 TOP_K = 10
-SYSTEMS = ("oracle_context", "fixed")
+SYSTEMS = ("oracle_context", "fixed", "agentic")
+# One context size for the agent loop and its final answer, so Ollama never reloads the model
+# between them; large enough that a long agent conversation is never silently truncated.
+AGENT_NUM_CTX = 16384
 
 
 def draw_questions(
@@ -97,6 +101,10 @@ class Corpus:
 
     def table(self, i: int) -> tuple[tuple[str, ...], ...]:
         return self.bench.pages[self.chunks.chunks[i].page_id].table
+
+    def page_chunks(self, i: int) -> list[int]:
+        page_id = self.chunks.chunks[i].page_id
+        return [j for j, c in enumerate(self.chunks.chunks) if c.page_id == page_id]
 
 
 def role_dir(role: str) -> Path:
@@ -188,6 +196,71 @@ def run_question(llm: G.ChatModel, corpus: Corpus, q: finqa.Question, ctx: list[
     }
 
 
+def agent_toolbox(corpus: Corpus):
+    """Agent tools on CPU (BM25, embedder with cached embeddings): the GPU is left to Ollama."""
+    from sentence_transformers import SentenceTransformer
+
+    from ragbench import b2
+    from ragbench.agent import ToolBox
+    from ragbench.retrieval import BM25Retriever, DenseRetriever
+
+    model = SentenceTransformer(b2.DENSE_MODEL, device="cpu")
+    texts = corpus.texts
+    dense = DenseRetriever(
+        model, texts, embeddings=b2._embeddings(model, texts, f"{STRATEGY}_contextual")
+    )
+    bm25 = BM25Retriever(texts)
+    return ToolBox(texts, corpus.page_chunks, bm25.search, dense.search)
+
+
+def run_agentic(llm: G.ChatModel, box, corpus: Corpus, q: finqa.Question, top: list[int]) -> dict:
+    """Agent loop, then the same generator as `fixed` on the evidence pool."""
+    from ragbench.agent import AGENT_PROMPT_VERSION, gather
+
+    state = gather(llm, box, corpus.bench.count, corpus.query(q), top)
+    pool = state["pool"]
+    if state["stop"] == "done":
+        row = run_question(llm, corpus, q, pool)
+    else:  # budget exhausted: insufficient_context, the generator is not asked to guess
+        gold = corpus.gold(q)
+        row = {
+            "qid": q.qid,
+            "prompt_version": G.PROMPT_VERSION,
+            "context": pool,
+            "pass_all_ctx": ev.pass_all(pool, gold, len(pool)),
+            "pass_any_ctx": ev.pass_any(pool, gold, len(pool)),
+            "context_tokens": state["pool_tokens"],
+            "status": "insufficient_context",
+            "program": "",
+            "operands": [],
+            "program_valid": False,
+            "value": None,
+            "gold": q.answer,
+            "correct": False,
+            "grounded": False,
+            "wrong_answer": False,
+            "error": "",
+            "llm_calls": 0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "llm_seconds": 0.0,
+            "raw": "",
+        }
+    row.update({
+        "agent_prompt_version": AGENT_PROMPT_VERSION,
+        "stop": state["stop"],
+        "tool_calls": state["tool_calls"],
+        "added_chunks": len(pool) - len(top),
+        "llm_calls": row["llm_calls"] + state["llm_calls"],
+        "prompt_tokens": row["prompt_tokens"] + state["prompt_tokens"],
+        "completion_tokens": row["completion_tokens"] + state["completion_tokens"],
+        "llm_seconds": row["llm_seconds"] + state["llm_seconds"],
+        "trace": state["trace"],
+        "agent_final": state["messages"][-1].get("content", ""),
+    })
+    return row
+
+
 def cmd_generate(args: argparse.Namespace) -> None:
     corpus = Corpus()
     saved = json.loads((role_dir(args.role) / "retrieval.json").read_text())
@@ -196,13 +269,20 @@ def cmd_generate(args: argparse.Namespace) -> None:
     done = set()
     if out.exists():  # resume an interrupted run
         done = {json.loads(line)["qid"] for line in out.open()}
-    llm = G.OllamaChat()
+    agentic = args.system == "agentic"
+    llm = G.OllamaChat(num_ctx=AGENT_NUM_CTX) if agentic else G.OllamaChat()
+    box = agent_toolbox(corpus) if agentic else None
     qids = [qid for qid in load_questions()[args.role] if qid not in done]
     with out.open("a") as f:
         for n, qid in enumerate(qids, start=1):
             q = corpus.question(qid)
-            ctx = context_for(args.system, corpus, q, retrieval[qid]["top"])
-            row = run_question(llm, corpus, q, ctx)
+            top = retrieval[qid]["top"]
+            t0 = time.perf_counter()
+            if agentic:
+                row = run_agentic(llm, box, corpus, q, top)
+            else:
+                row = run_question(llm, corpus, q, context_for(args.system, corpus, q, top))
+            row["generation_s"] = time.perf_counter() - t0
             if args.system != "oracle_context":
                 row["retrieval_ms"] = retrieval[qid]["latency_ms"]
             f.write(json.dumps(row) + "\n")
@@ -231,6 +311,8 @@ def cmd_summary(args: argparse.Namespace) -> None:
             "wrong_answer_rate": df.wrong_answer.mean(),
             "invalid_output": (df.status == "invalid").mean(),
             "ctx_tokens_p50": df.context_tokens.median(),
+            "llm_calls_mean": df.llm_calls.mean(),
+            "tool_calls_mean": df.tool_calls.mean() if "tool_calls" in df else 0.0,
             "llm_s_p50": df.llm_seconds.median(),
         })
     print(pd.DataFrame(rows).round(3).to_string(index=False))

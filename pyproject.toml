@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 authors = [{ name = "wilson goma", email = "10559068+gwils28@users.noreply.github.com" }]
 dependencies = [
+    "langgraph>=1.2.17",
     "pandas>=3.0.6",
     "pyarrow>=26.0.0",
     "rank-bm25>=0.2.2",

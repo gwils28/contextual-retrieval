@@ -46,4 +46,5 @@ b3-dev:
 	uv run python -m ragbench.b3 retrieve --role development
 	uv run python -m ragbench.b3 generate --system oracle_context --role development
 	uv run python -m ragbench.b3 generate --system fixed --role development
+	uv run python -m ragbench.b3 generate --system agentic --role development
 	uv run python -m ragbench.b3 summary --role development
