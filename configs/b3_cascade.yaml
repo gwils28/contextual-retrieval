@@ -1,0 +1,7 @@
+# Block 3 cascade threshold, written once by `make b3-threshold` from the
+# development questions before any evaluation run (b3_system_protocol.yaml).
+id: b3-cascade-threshold
+source: development questions, top-1 reranker score of the fixed pipeline
+rule: escalate if top-1 score < threshold (20% quantile, numpy linear)
+flagged_development_questions: 20 of 100
+threshold: 0.8886022925376892

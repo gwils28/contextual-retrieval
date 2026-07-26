@@ -4,6 +4,8 @@ python -m ragbench.b3 questions                 # draw the question sets (seed 0
 python -m ragbench.b3 retrieve --role development  # fixed top-10 + reranker scores (GPU)
 python -m ragbench.b3 generate --system fixed --role development   # needs Ollama
 python -m ragbench.b3 generate --system agentic --role development # needs Ollama
+python -m ragbench.b3 threshold                 # freeze the cascade threshold (development)
+python -m ragbench.b3 cascade --role development   # fixed + agentic rows, no LLM call
 python -m ragbench.b3 summary --role development   # quick table (no CI), for development only
 
 Retrieval runs first and is saved, then the GPU is freed before the LLM is loaded: on an 8 GB
@@ -16,6 +18,7 @@ import argparse
 import csv
 import json
 import time
+from collections.abc import Sequence
 from pathlib import Path
 
 from ragbench import evaluation as ev
@@ -25,6 +28,7 @@ from ragbench.audit import audited_sample, gold_type
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "configs" / "b3_system_protocol.yaml"
+CASCADE = ROOT / "configs" / "b3_cascade.yaml"
 QUESTIONS = ROOT / "configs" / "b3_questions.csv"
 RAW = ROOT / "data" / "raw" / "finqa"
 RESULTS = ROOT / "blocks" / "03-system-design" / "results"
@@ -34,7 +38,12 @@ SEED = 0
 ROLES = ("development", "evaluation")
 STRATEGY = "naive"  # Block 2 winner, with its versioned Qwen contexts
 TOP_K = 10
-SYSTEMS = ("oracle_context", "fixed", "agentic")
+GENERATED = ("oracle_context", "fixed", "agentic")
+SYSTEMS = GENERATED + ("cascade",)  # the cascade is composed from fixed and agentic rows
+# Share of development questions flagged by the reranker signal (protocol: systems.cascade).
+CASCADE_SHARE = 0.20
+# Summed when a question escalates: the cascade pays for fixed, then for the agent.
+COST_KEYS = ("llm_calls", "prompt_tokens", "completion_tokens", "llm_seconds", "generation_s")
 # One context size for the agent loop and its final answer, so Ollama never reloads the model
 # between them; large enough that a long agent conversation is never silently truncated.
 AGENT_NUM_CTX = 16384
@@ -261,6 +270,82 @@ def run_agentic(llm: G.ChatModel, box, corpus: Corpus, q: finqa.Question, top: l
     return row
 
 
+def cascade_threshold(top1: Sequence[float], share: float = CASCADE_SHARE) -> float:
+    """Top-1 reranker score below which a question counts as least confident."""
+    import numpy as np
+
+    return float(np.quantile(np.asarray(top1, dtype=float), share))
+
+
+def escalation_reasons(fixed: dict, top1: float, threshold: float) -> list[str]:
+    """The cheap signals of the protocol that fired on the fixed pipeline's row."""
+    reasons = []
+    if fixed["status"] == "insufficient_context":
+        reasons.append("refusal")
+    elif not fixed["grounded"]:  # an invalid output has no grounded program either
+        reasons.append("ungrounded")
+    if top1 < threshold:
+        reasons.append("low_score")
+    return reasons
+
+
+def cascade_row(fixed: dict, agentic: dict, reasons: list[str]) -> dict:
+    """Fixed's row if no signal fired, else the agent's row (even a refusal) at both costs."""
+    if not reasons:
+        row = dict(fixed, tool_calls=0)
+    else:
+        row = dict(agentic)
+        for key in COST_KEYS:
+            if key in fixed and key in agentic:
+                row[key] = fixed[key] + agentic[key]
+            else:  # a cost measured for one stage only would be understated
+                row.pop(key, None)
+    row.update({"escalated": bool(reasons), "escalation_reasons": reasons})
+    return row
+
+
+def read_rows(role: str, system: str) -> dict[str, dict]:
+    path = role_dir(role) / f"{system}.jsonl"
+    return {r["qid"]: r for r in map(json.loads, path.open())}
+
+
+def cmd_threshold(args: argparse.Namespace) -> None:
+    if CASCADE.exists():
+        raise SystemExit(f"{CASCADE} is frozen; delete it by hand to redraw (and say why)")
+    saved = json.loads((role_dir("development") / "retrieval.json").read_text())
+    threshold = cascade_threshold([r["scores"][0] for r in saved])
+    flagged = sum(r["scores"][0] < threshold for r in saved)
+    CASCADE.write_text(
+        "# Block 3 cascade threshold, written once by `make b3-threshold` from the\n"
+        "# development questions before any evaluation run (b3_system_protocol.yaml).\n"
+        "id: b3-cascade-threshold\n"
+        "source: development questions, top-1 reranker score of the fixed pipeline\n"
+        f"rule: escalate if top-1 score < threshold ({CASCADE_SHARE:.0%} quantile, numpy linear)\n"
+        f"flagged_development_questions: {flagged} of {len(saved)}\n"
+        f"threshold: {threshold!r}\n"
+    )
+    print(f"wrote {CASCADE}: threshold {threshold:.4f}, flags {flagged}/{len(saved)}")
+
+
+def load_threshold() -> float:
+    import yaml
+
+    return float(yaml.safe_load(CASCADE.read_text())["threshold"])
+
+
+def cmd_cascade(args: argparse.Namespace) -> None:
+    threshold = load_threshold()
+    saved = json.loads((role_dir(args.role) / "retrieval.json").read_text())
+    top1 = {r["qid"]: r["scores"][0] for r in saved}
+    fixed, agentic = read_rows(args.role, "fixed"), read_rows(args.role, "agentic")
+    out = role_dir(args.role) / "cascade.jsonl"
+    with out.open("w") as f:
+        for qid in load_questions()[args.role]:
+            reasons = escalation_reasons(fixed[qid], top1[qid], threshold)
+            f.write(json.dumps(cascade_row(fixed[qid], agentic[qid], reasons)) + "\n")
+    print(f"wrote {out}")
+
+
 def cmd_generate(args: argparse.Namespace) -> None:
     corpus = Corpus()
     saved = json.loads((role_dir(args.role) / "retrieval.json").read_text())
@@ -313,6 +398,7 @@ def cmd_summary(args: argparse.Namespace) -> None:
             "ctx_tokens_p50": df.context_tokens.median(),
             "llm_calls_mean": df.llm_calls.mean(),
             "tool_calls_mean": df.tool_calls.mean() if "tool_calls" in df else 0.0,
+            "escalation_rate": df.escalated.mean() if "escalated" in df else float("nan"),
             "llm_s_p50": df.llm_seconds.median(),
         })
     print(pd.DataFrame(rows).round(3).to_string(index=False))
@@ -326,9 +412,13 @@ def main(argv: list[str] | None = None) -> None:
     r.add_argument("--role", choices=ROLES, required=True)
     r.set_defaults(func=cmd_retrieve)
     g = sub.add_parser("generate")
-    g.add_argument("--system", choices=SYSTEMS, required=True)
+    g.add_argument("--system", choices=GENERATED, required=True)
     g.add_argument("--role", choices=ROLES, required=True)
     g.set_defaults(func=cmd_generate)
+    sub.add_parser("threshold").set_defaults(func=cmd_threshold)
+    c = sub.add_parser("cascade")
+    c.add_argument("--role", choices=ROLES, required=True)
+    c.set_defaults(func=cmd_cascade)
     s = sub.add_parser("summary")
     s.add_argument("--role", choices=ROLES, required=True)
     s.set_defaults(func=cmd_summary)

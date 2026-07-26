@@ -1894,6 +1894,7 @@ dependencies = [
     { name = "langgraph" },
     { name = "pandas" },
     { name = "pyarrow" },
+    { name = "pyyaml" },
     { name = "rank-bm25" },
     { name = "sentence-transformers" },
 ]
@@ -1913,6 +1914,7 @@ requires-dist = [
     { name = "langgraph", specifier = ">=1.2.17" },
     { name = "pandas", specifier = ">=3.0.6" },
     { name = "pyarrow", specifier = ">=26.0.0" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "rank-bm25", specifier = ">=0.2.2" },
     { name = "sentence-transformers", specifier = ">=6.1.0" },
 ]

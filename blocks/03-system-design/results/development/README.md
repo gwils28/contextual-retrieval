@@ -66,3 +66,36 @@ Files: `agentic.jsonl` (v1, with its traces), both versions in `history/`. No qu
 **Stopping rule.** The stop rule on an exhausted budget is frozen by the protocol
 (`systems.agentic.stop`); changing it after seeing these numbers would tune the protocol to the
 outcome. Agent prompt v1 is final for Block 3.
+
+## Cascade (composed, no LLM call)
+
+`fixed` first; the question goes to the agent when `fixed` refuses, when its answer fails the
+grounding check, or when the reranker top-1 score is below the threshold frozen in
+`configs/b3_cascade.yaml` (`make b3-threshold`: 20 % quantile of the development top-1 scores,
+0.8886). The cascade row is the agent's row, at the cost of both stages. It is composed from
+`fixed.jsonl` and `agentic.jsonl`: the agent starts from the same top-10 without seeing the
+fixed answer, and the runs are deterministic (a v1 re-run gave the same outcome on 66 of 66
+questions), so no question is run twice.
+
+| signal (on `fixed`) | questions |
+|---|---|
+| refusal | 4 |
+| answer fails the grounding check | 50 |
+| top-1 score < 0.8886 | 20 |
+| **any of them: escalated** | **64** |
+
+Cascade: exec. accuracy 0.24, refusal 0.27, wrong answer 0.24, 5.1 LLM calls per question
+(`make b3-dev`, file `cascade.jsonl`).
+
+**What it taught**
+
+- The grounding check is not a confidence signal for a 7B generator. It fails on 50 of the 96
+  `fixed` answers, mostly because of citations, not numbers: 19 cite chunk 0 (no such chunk),
+  18 cite the wrong chunk while the number is in another chunk of the context, only 3 use a
+  number found in no chunk. `fixed` is as often right on ungrounded answers (0.32) as on
+  grounded ones (0.33).
+- So the cascade escalates 64 % of the questions, mostly on a signal that does not separate
+  right from wrong, to an agent that is weaker than `fixed`: on the escalated questions the
+  agent scores 0.19 where `fixed` scored 0.30.
+- The escalation rule is frozen by the protocol (`systems.cascade.escalate_if`); it is kept as
+  written. Dropping the grounding signal after seeing these numbers would fit the rule to them.

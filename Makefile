@@ -39,6 +39,11 @@ b2: b2-plain b2-contextualize b2-contextual b2-report b2-analysis
 b3-questions:
 	uv run python -m ragbench.b3 questions
 
+# Freezes the cascade threshold from the development questions; refuses to overwrite it.
+.PHONY: b3-threshold
+b3-threshold:
+	uv run python -m ragbench.b3 threshold
+
 # Development questions only: prompt design (configs/b3_system_protocol.yaml, data.development).
 # Retrieval runs first and frees the GPU before the LLM is loaded (8 GB GPU).
 .PHONY: b3-dev
@@ -47,4 +52,5 @@ b3-dev:
 	uv run python -m ragbench.b3 generate --system oracle_context --role development
 	uv run python -m ragbench.b3 generate --system fixed --role development
 	uv run python -m ragbench.b3 generate --system agentic --role development
+	uv run python -m ragbench.b3 cascade --role development
 	uv run python -m ragbench.b3 summary --role development
