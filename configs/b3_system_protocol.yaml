@@ -122,4 +122,20 @@ expected_outputs:
 
 reproduce: make b3   # needs a running Ollama server
 
-amendments: []
+amendments:
+  - id: A1
+    date: 2026-07-26
+    change: fills the price table of metrics.cost.usd_equivalent
+    price_table:
+      provider: Together AI, serverless inference
+      model: Qwen2.5 7B Instruct Turbo (the local generator's model, served by an API)
+      usd_per_million_input_tokens: 0.30
+      usd_per_million_output_tokens: 0.30
+      source: https://www.together.ai/pricing
+      accessed: 2026-10-25
+      prompt_caching: not assumed (no cached-input price listed for this model)
+      tokens: as counted by Ollama (Qwen tokenizer), the same tokenizer as the API model
+    reason: the protocol asked for a price table frozen here but did not fill it. It is filled
+      before any evaluation run, from a provider serving the same model at the same size, so
+      the price is not chosen after seeing the evaluation token counts (development token
+      counts were seen; with one price for input and output they do not favour any system)
