@@ -1,0 +1,10 @@
+group,level,n,fixed_exec_accuracy,agentic_exec_accuracy
+agent_stop,done,71,0.23943661971830985,0.2535211267605634
+agent_stop,tool_budget,29,0.3793103448275862,0.0
+fixed_answer,grounded,45,0.3111111111111111,0.24444444444444444
+fixed_answer,ungrounded,50,0.28,0.14
+cascade,kept_fixed,35,0.3142857142857143,0.22857142857142856
+cascade,escalated,65,0.26153846153846155,0.15384615384615385
+escalation_signal,refusal,5,0.0,0.0
+escalation_signal,ungrounded,50,0.28,0.14
+escalation_signal,low_score,20,0.25,0.2

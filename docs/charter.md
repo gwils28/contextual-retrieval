@@ -101,3 +101,5 @@ Based on the owner's article *Claude Code for data science*:
 | 2026-07-23 | Block 3 evaluated on 100 stratified test questions instead of 1,147 | Owner's choice: cuts generation time and cost; wider CIs accepted, non-significant gaps reported as "not shown" |
 | 2026-07-23 | Block 3 prompts and threshold designed on 100 other test questions, not on the dev split | Reuses the versioned test contexts (no new contextualization run); limit: 15 pages are shared with the evaluation set |
 | 2026-07-23 | Block 3: no Claude reference run | Owner's decision; every Block 3 result comes from qwen2.5:7b-instruct |
+| 2026-07-27 | Block 3: fixed retrieve-then-read is the default; agentic loop and cascade not adopted (ADR-0001) | No gain shown after Holm, 7.6× the cost and 2.7× the latency of fixed; generation, not retrieval, is the bottleneck |
+| 2026-07-27 | Block 3 agent and cascade breakdown reported as exploratory (`exploratory.csv`) | Defined after the evaluation numbers were seen: it explains them, never ranks systems |

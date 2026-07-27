@@ -586,6 +586,33 @@ def question_strata(role: str, oracle: pd.DataFrame) -> pd.DataFrame:
     }, index=oracle.index)
 
 
+def exploratory(systems: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Fixed and agentic accuracy on the same subsets of questions, to explain the agent and the
+    cascade. Exploratory: defined after the evaluation numbers were seen, never used to rank."""
+    import pandas as pd
+
+    fixed, agentic, cascade = systems["fixed"], systems["agentic"], systems["cascade"]
+    answered = fixed.status == "answer"
+    escalated = cascade.escalated.astype(bool)
+    stops = sorted(agentic.stop.unique())
+    subsets = [(("agent_stop", stop), agentic.stop == stop) for stop in stops]
+    subsets += [
+        (("fixed_answer", "grounded"), answered & fixed.grounded),
+        (("fixed_answer", "ungrounded"), answered & ~fixed.grounded),
+        (("cascade", "kept_fixed"), ~escalated),
+        (("cascade", "escalated"), escalated),
+    ]
+    for signal in ("refusal", "ungrounded", "low_score"):  # overlap: a question can fire two
+        subsets.append((("escalation_signal", signal),
+                        cascade.escalation_reasons.map(lambda r, s=signal: s in r)))
+    rows = []
+    for (group, level), mask in subsets:
+        rows.append({"group": group, "level": level, "n": int(mask.sum()),
+                     "fixed_exec_accuracy": fixed.correct[mask].mean(),
+                     "agentic_exec_accuracy": agentic.correct[mask].mean()})
+    return pd.DataFrame(rows)
+
+
 def cmd_report(args: argparse.Namespace) -> None:
     import pandas as pd
 
@@ -612,6 +639,8 @@ def cmd_report(args: argparse.Namespace) -> None:
     n_chunks = len(b2.load_cache(b2.context_cache_path(STRATEGY, "ollama")))
     layers = layer_economics(pd.read_csv(B2_RESULTS / "summary.csv"), summary, n_chunks)
     layers.to_csv(out / "layer_economics.csv", index=False)
+    explore = exploratory(systems)
+    explore.to_csv(out / "exploratory.csv", index=False)
 
     # Block 2 gives the fixed hit/miss stratum; the B3 re-run of the same pipeline should agree.
     differ = int((strata.fixed_retrieval.eq("hit") != systems["fixed"].pass_all_ctx).sum())
@@ -625,8 +654,9 @@ def cmd_report(args: argparse.Namespace) -> None:
         print(tests.round(4).to_string(index=False), end="\n\n")
         print(by_stratum.round(3).to_string(index=False), end="\n\n")
         print(layers.round(3).to_string(index=False), end="\n\n")
+        print(explore.round(3).to_string(index=False), end="\n\n")
     print(f"fixed hit/miss: Block 2 and this run disagree on {differ} of {len(qids)} questions")
-    print(f"wrote {out}/{{summary,diagnosis,paired_tests,strata,layer_economics}}.csv")
+    print(f"wrote {out}/{{summary,diagnosis,paired_tests,strata,layer_economics,exploratory}}.csv")
 
 
 def main(argv: list[str] | None = None) -> None:

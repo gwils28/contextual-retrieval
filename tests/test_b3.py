@@ -145,3 +145,24 @@ def test_layer_economics_gives_no_cost_per_point_without_a_gain():
     assert round(out.loc["agentic_loop", "gain_points"], 6) == -10.0
     assert out.loc["agentic_loop", "llm_tokens_added"] == 8200.0
     assert pd.isna(out.loc["agentic_loop", "usd_per_1000_per_point"])
+
+
+def test_exploratory_compares_both_systems_on_the_same_questions():
+    import pandas as pd
+
+    idx = ["q0", "q1", "q2"]
+    fixed = pd.DataFrame({"status": ["answer", "answer", "insufficient_context"],
+                          "grounded": [True, False, False], "correct": [True, False, False]},
+                         index=idx)
+    agentic = pd.DataFrame({"stop": ["done", "tool_budget", "done"],
+                            "correct": [False, False, True]}, index=idx)
+    cascade = pd.DataFrame({"escalated": [False, True, True],
+                            "escalation_reasons": [[], ["ungrounded"], ["refusal", "low_score"]]},
+                           index=idx)
+    out = b3.exploratory({"fixed": fixed, "agentic": agentic, "cascade": cascade})
+    out = out.set_index(["group", "level"])
+    assert out.loc[("agent_stop", "done"), "n"] == 2
+    assert out.loc[("agent_stop", "done"), "agentic_exec_accuracy"] == 0.5
+    assert out.loc[("fixed_answer", "ungrounded"), "n"] == 1
+    assert out.loc[("cascade", "escalated"), "agentic_exec_accuracy"] == 0.5
+    assert out.loc[("escalation_signal", "low_score"), "n"] == 1
