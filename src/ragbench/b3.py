@@ -7,6 +7,7 @@ python -m ragbench.b3 generate --system agentic --role development # needs Ollam
 python -m ragbench.b3 threshold                 # freeze the cascade threshold (development)
 python -m ragbench.b3 cascade --role development   # fixed + agentic rows, no LLM call
 python -m ragbench.b3 summary --role development   # quick table (no CI), for development only
+python -m ragbench.b3 report --role evaluation     # protocol tables: CI, paired tests, strata
 
 Retrieval runs first and is saved, then the GPU is freed before the LLM is loaded: on an 8 GB
 GPU, Qwen 7B, the embedder and the reranker do not fit together comfortably.
@@ -20,11 +21,15 @@ import json
 import time
 from collections.abc import Sequence
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from ragbench import evaluation as ev
 from ragbench import finqa
 from ragbench import generation as G
 from ragbench.audit import audited_sample, gold_type
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "configs" / "b3_system_protocol.yaml"
@@ -404,6 +409,226 @@ def cmd_summary(args: argparse.Namespace) -> None:
     print(pd.DataFrame(rows).round(3).to_string(index=False))
 
 
+# Report (protocol: metrics, statistics, layer_economics). Rates get a bootstrap CI.
+RATES = {
+    "pass_all_ctx": "pass_all_ctx",
+    "pass_any_ctx": "pass_any_ctx",
+    "exec_accuracy": "correct",
+    "program_valid": "program_valid",
+    "grounded": "grounded",
+    "refusal_rate": "refusal",
+    "wrong_answer_rate": "wrong_answer",
+}
+PAIRS = (("fixed", "agentic"), ("fixed", "cascade"), ("agentic", "cascade"))
+PAIRED_METRICS = ("correct", "wrong_answer")
+MIN_STRATUM = 20  # below: counts only, no CI (protocol: statistics.small_strata)
+B2_RESULTS = ROOT / "blocks" / "02-retrieval-bench" / "results"
+# Block 2 configs before and after each retrieval layer (naive chunking, main setting).
+RETRIEVAL_LAYERS = {
+    "hybrid": ("dense", "hybrid", "BM25 index (CPU)"),
+    "reranker": ("hybrid", "hybrid_rerank", "none"),
+    "contextual_chunks": (
+        "hybrid_rerank", "contextual_hybrid_rerank", "one LLM call per chunk ({n} calls)"
+    ),
+}
+
+
+def price_table() -> dict:
+    import yaml
+
+    protocol = yaml.safe_load(PROTOCOL.read_text())
+    return next(a["price_table"] for a in protocol["amendments"] if "price_table" in a)
+
+
+def load_system(role: str, system: str, prices: dict) -> pd.DataFrame:
+    """Per-question rows of one system, with the derived columns of the report."""
+    import pandas as pd
+
+    df = pd.read_json(role_dir(role) / f"{system}.jsonl", lines=True).set_index("qid")
+    df["refusal"] = df.status == "insufficient_context"
+    for col in ("correct", "program_valid", "grounded", "wrong_answer"):
+        df[col] = df[col].astype(bool)
+    df["pass_all_ctx"] = df.pass_all_ctx.astype(bool)
+    df["pass_any_ctx"] = df.pass_any_ctx.astype(bool)
+    if "tool_calls" not in df:
+        df["tool_calls"] = 0
+    # End to end, batch size 1: retrieval (none for the oracle) + generation (agent tools included).
+    # Not measured (NaN) in rows written before generation_s was recorded.
+    retrieval_ms = df["retrieval_ms"] if "retrieval_ms" in df else 0.0
+    generation_s = df["generation_s"] if "generation_s" in df else float("nan")
+    df["latency_ms"] = retrieval_ms + generation_s * 1000
+    df["usd"] = (
+        df.prompt_tokens * prices["usd_per_million_input_tokens"]
+        + df.completion_tokens * prices["usd_per_million_output_tokens"]
+    ) / 1e6
+    return df
+
+
+def summary_row(df: pd.DataFrame) -> dict:
+    row: dict = {"n": len(df)}
+    for name, col in RATES.items():
+        row[name] = df[col].mean()
+        row[f"{name}_lo"], row[f"{name}_hi"] = ev.bootstrap_ci(df[col].to_numpy())
+    row.update({
+        "context_tokens_p50": df.context_tokens.median(),
+        "llm_calls_mean": df.llm_calls.mean(),
+        "prompt_tokens_mean": df.prompt_tokens.mean(),
+        "completion_tokens_mean": df.completion_tokens.mean(),
+        "tool_calls_mean": df.tool_calls.mean(),
+        "latency_p50_ms": df.latency_ms.median(),
+        "latency_p95_ms": df.latency_ms.quantile(0.95),
+        "usd_per_1000_questions": df.usd.mean() * 1000,
+        "gpu_llm_seconds_total": df.llm_seconds.sum(),
+        "escalation_rate": df.escalated.mean() if "escalated" in df else float("nan"),
+    })
+    return row
+
+
+def diagnosis(df: pd.DataFrame) -> dict:
+    """Retrieval and generation joined after both are scored: one cell per question."""
+    hit, ok = df.pass_all_ctx, df.correct
+    return {
+        "hit_correct": int((hit & ok).sum()),
+        "hit_wrong": int((hit & ~ok).sum()),  # generation failure on a complete context
+        "miss_correct": int((~hit & ok).sum()),
+        "miss_wrong": int((~hit & ~ok).sum()),  # retrieval failure
+    }
+
+
+def paired_tests(systems: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Exact McNemar per pair and metric, Holm across all of them."""
+    import pandas as pd
+
+    rows = []
+    for metric in PAIRED_METRICS:
+        for a, b in PAIRS:
+            x, y = systems[a][metric], systems[b][metric].reindex(systems[a].index)
+            r = ev.mcnemar_exact(x.to_numpy(), y.to_numpy())
+            rows.append({"metric": metric, "a": a, "b": b, "rate_a": x.mean(), "rate_b": y.mean(),
+                         "delta": y.mean() - x.mean(), **r})
+    tests = pd.DataFrame(rows)
+    tests["p_holm"] = ev.holm(tests.p_value.tolist())
+    tests["significant"] = tests.p_holm < 0.05
+    return tests
+
+
+def strata_table(systems: dict[str, pd.DataFrame], strata: pd.DataFrame) -> pd.DataFrame:
+    """Per system and stratum level; a level under MIN_STRATUM questions gets no CI."""
+    import pandas as pd
+
+    rows = []
+    for system, df in systems.items():
+        joined = df.join(strata)
+        for stratum in strata.columns:
+            for level, g in joined.groupby(stratum):
+                row = {"system": system, "stratum": stratum, "level": level, "n": len(g),
+                       "pass_all_ctx": g.pass_all_ctx.mean()}
+                for name in ("exec_accuracy", "wrong_answer_rate", "refusal_rate"):
+                    col = RATES[name]
+                    row[name] = g[col].mean()
+                    lo, hi = ev.bootstrap_ci(g[col].to_numpy()) if len(g) >= MIN_STRATUM else (
+                        float("nan"), float("nan"))
+                    row[f"{name}_lo"], row[f"{name}_hi"] = lo, hi
+                rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def layer_economics(b2_summary: pd.DataFrame, summary: pd.DataFrame, n_chunks: int) -> pd.DataFrame:
+    """Each layer against the system without it: Block 2 for retrieval, Block 3 for the agent."""
+    import pandas as pd
+
+    b2 = b2_summary[(b2_summary.strategy == STRATEGY) & (b2_summary.setting == "main")]
+    b2 = b2.set_index("config")
+    rows = []
+    for layer, (before, after, one_time) in RETRIEVAL_LAYERS.items():
+        gain = (b2.loc[after, "pass_all@10"] - b2.loc[before, "pass_all@10"]) * 100
+        latency = b2.loc[after, "latency_p50_ms"] - b2.loc[before, "latency_p50_ms"]
+        rows.append({
+            "layer": layer, "compared": f"{before} -> {after}", "source": "Block 2, 1147 questions",
+            "one_time_cost": one_time.format(n=n_chunks),
+            "metric": "pass_all@10", "gain_points": gain, "latency_p50_ms_added": latency,
+            "llm_tokens_added": 0.0, "usd_per_1000_added": 0.0,
+        })
+    s = summary.set_index("system")
+    gain = (s.loc["agentic", "exec_accuracy"] - s.loc["fixed", "exec_accuracy"]) * 100
+    tokens = [s.loc[x, "prompt_tokens_mean"] + s.loc[x, "completion_tokens_mean"]
+              for x in ("fixed", "agentic")]
+    rows.append({
+        "layer": "agentic_loop", "compared": "fixed -> agentic", "source": "Block 3",
+        "one_time_cost": "none", "metric": "exec_accuracy", "gain_points": gain,
+        "latency_p50_ms_added": s.latency_p50_ms["agentic"] - s.latency_p50_ms["fixed"],
+        "llm_tokens_added": tokens[1] - tokens[0],
+        "usd_per_1000_added": s.usd_per_1000_questions["agentic"]
+        - s.usd_per_1000_questions["fixed"],
+    })
+    out = pd.DataFrame(rows)
+    # Cost per point is only defined for a gain; a loss or a tie gets no ratio.
+    positive = out.gain_points > 0
+    out["latency_ms_per_point"] = (out.latency_p50_ms_added / out.gain_points).where(positive)
+    out["usd_per_1000_per_point"] = (out.usd_per_1000_added / out.gain_points).where(positive)
+    return out
+
+
+def question_strata(role: str, oracle: pd.DataFrame) -> pd.DataFrame:
+    """The protocol strata of each question (statistics.strata)."""
+    import pandas as pd
+
+    with QUESTIONS.open() as f:
+        types = {r["qid"]: r["gold_type"] for r in csv.DictReader(f) if r["role"] == role}
+    b2 = pd.read_parquet(B2_RESULTS / "per_query_contextual.parquet")
+    b2 = b2[(b2.strategy == STRATEGY) & (b2.setting == "main")
+            & (b2.config == "contextual_hybrid_rerank")].set_index("qid")
+    return pd.DataFrame({
+        # The oracle context is exactly the distinct gold chunks of the question.
+        "n_gold_chunks": oracle.context.map(lambda c: "1" if len(c) == 1 else "2+"),
+        "gold_type": pd.Series(types),
+        "fixed_retrieval": b2["pass_all@10"].reindex(oracle.index).map({1.0: "hit", 0.0: "miss"}),
+    }, index=oracle.index)
+
+
+def cmd_report(args: argparse.Namespace) -> None:
+    import pandas as pd
+
+    prices = price_table()
+    systems = {s: load_system(args.role, s, prices) for s in SYSTEMS}
+    qids = load_questions()[args.role]
+    for system, df in systems.items():
+        if sorted(df.index) != sorted(qids):
+            raise SystemExit(f"{system}: rows do not match the {args.role} questions")
+        systems[system] = df.loc[qids]
+    out = role_dir(args.role)
+
+    summary = pd.DataFrame([{"system": s, **summary_row(df)} for s, df in systems.items()])
+    summary.to_csv(out / "summary.csv", index=False)
+    diag = pd.DataFrame([{"system": s, **diagnosis(df)} for s, df in systems.items()])
+    diag.to_csv(out / "diagnosis.csv", index=False)
+    tests = paired_tests(systems)
+    tests.to_csv(out / "paired_tests.csv", index=False)
+    strata = question_strata(args.role, systems["oracle_context"])
+    by_stratum = strata_table(systems, strata)
+    by_stratum.to_csv(out / "strata.csv", index=False)
+    from ragbench import b2
+
+    n_chunks = len(b2.load_cache(b2.context_cache_path(STRATEGY, "ollama")))
+    layers = layer_economics(pd.read_csv(B2_RESULTS / "summary.csv"), summary, n_chunks)
+    layers.to_csv(out / "layer_economics.csv", index=False)
+
+    # Block 2 gives the fixed hit/miss stratum; the B3 re-run of the same pipeline should agree.
+    differ = int((strata.fixed_retrieval.eq("hit") != systems["fixed"].pass_all_ctx).sum())
+    with pd.option_context("display.width", 250, "display.max_columns", 40):
+        cols = ["system", "pass_all_ctx", "exec_accuracy", "exec_accuracy_lo", "exec_accuracy_hi",
+                "program_valid", "grounded", "refusal_rate", "wrong_answer_rate",
+                "context_tokens_p50", "llm_calls_mean", "tool_calls_mean", "latency_p50_ms",
+                "latency_p95_ms", "usd_per_1000_questions", "escalation_rate"]
+        print(summary[cols].round(3).to_string(index=False), end="\n\n")
+        print(diag.to_string(index=False), end="\n\n")
+        print(tests.round(4).to_string(index=False), end="\n\n")
+        print(by_stratum.round(3).to_string(index=False), end="\n\n")
+        print(layers.round(3).to_string(index=False), end="\n\n")
+    print(f"fixed hit/miss: Block 2 and this run disagree on {differ} of {len(qids)} questions")
+    print(f"wrote {out}/{{summary,diagnosis,paired_tests,strata,layer_economics}}.csv")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="ragbench.b3")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -422,6 +647,9 @@ def main(argv: list[str] | None = None) -> None:
     s = sub.add_parser("summary")
     s.add_argument("--role", choices=ROLES, required=True)
     s.set_defaults(func=cmd_summary)
+    rp = sub.add_parser("report")
+    rp.add_argument("--role", choices=ROLES, required=True)
+    rp.set_defaults(func=cmd_report)
     args = parser.parse_args(argv)
     args.func(args)
 

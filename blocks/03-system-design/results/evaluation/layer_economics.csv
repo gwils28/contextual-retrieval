@@ -1,0 +1,5 @@
+layer,compared,source,one_time_cost,metric,gain_points,latency_p50_ms_added,llm_tokens_added,usd_per_1000_added,latency_ms_per_point,usd_per_1000_per_point
+hybrid,dense -> hybrid,"Block 2, 1147 questions",BM25 index (CPU),pass_all@10,5.231037489102008,2.885550000087278,0.0,0.0,0.5516209750166843,0.0
+reranker,hybrid -> hybrid_rerank,"Block 2, 1147 questions",none,pass_all@10,11.333914559721004,345.35903899995895,0.0,0.0,30.47129367176563,0.0
+contextual_chunks,hybrid_rerank -> contextual_hybrid_rerank,"Block 2, 1147 questions",one LLM call per chunk (1702 calls),pass_all@10,10.462074978204017,91.23334399930633,0.0,0.0,8.720387130600358,0.0
+agentic_loop,fixed -> agentic,Block 3,none,exec_accuracy,-10.000000000000004,5575.313234999725,25912.48,7.773744000000001,,

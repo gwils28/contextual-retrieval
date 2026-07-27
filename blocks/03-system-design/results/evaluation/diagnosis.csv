@@ -1,0 +1,5 @@
+system,hit_correct,hit_wrong,miss_correct,miss_wrong
+oracle_context,44,56,0,0
+fixed,27,67,1,5
+agentic,16,82,2,0
+cascade,20,78,1,1

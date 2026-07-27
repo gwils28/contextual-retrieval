@@ -78,3 +78,70 @@ def test_cascade_takes_the_agent_answer_even_a_refusal_and_pays_both():
 def test_cascade_drops_a_cost_measured_for_one_stage_only():
     row = b3.cascade_row(fixed_row(), agentic_row(generation_s=8.5), ["refusal"])
     assert "generation_s" not in row
+
+
+def report_frame(correct, wrong=None, hit=None):
+    import pandas as pd
+
+    n = len(correct)
+    wrong = wrong if wrong is not None else [not c for c in correct]
+    hit = hit if hit is not None else [True] * n
+    return pd.DataFrame({"correct": correct, "wrong_answer": wrong, "pass_all_ctx": hit,
+                         "refusal": [False] * n}, index=[f"q{i}" for i in range(n)])
+
+
+def test_diagnosis_puts_each_question_in_one_cell():
+    df = report_frame([True, False, True, False], hit=[True, True, False, False])
+    assert b3.diagnosis(df) == {"hit_correct": 1, "hit_wrong": 1, "miss_correct": 1,
+                                "miss_wrong": 1}
+
+
+def test_paired_tests_cover_three_pairs_on_two_metrics_with_holm():
+    systems = {
+        "fixed": report_frame([True] * 10 + [False] * 10),
+        "agentic": report_frame([False] * 10 + [True] * 10),
+        "cascade": report_frame([True] * 20),
+    }
+    tests = b3.paired_tests(systems)
+    assert len(tests) == 6
+    row = tests[(tests.metric == "correct") & (tests.a == "fixed") & (tests.b == "cascade")].iloc[0]
+    assert (row.a_only, row.b_only, row.delta) == (0, 10, 0.5)
+    assert (tests.p_holm >= tests.p_value).all()
+
+
+def test_paired_tests_align_questions_by_id():
+    fixed = report_frame([True, False])
+    shuffled = report_frame([True, False]).iloc[::-1]
+    tests = b3.paired_tests({"fixed": fixed, "agentic": shuffled, "cascade": fixed})
+    assert (tests.a_only + tests.b_only == 0).all()
+
+
+def test_small_strata_get_no_ci():
+    import pandas as pd
+
+    df = report_frame([True, False] * 15)
+    strata = pd.DataFrame({"s": ["big"] * 25 + ["small"] * 5}, index=df.index)
+    out = b3.strata_table({"fixed": df}, strata).set_index("level")
+    assert out.loc["big", "n"] == 25 and not pd.isna(out.loc["big", "exec_accuracy_lo"])
+    assert out.loc["small", "n"] == 5 and pd.isna(out.loc["small", "exec_accuracy_lo"])
+
+
+def test_layer_economics_gives_no_cost_per_point_without_a_gain():
+    import pandas as pd
+
+    configs = ["dense", "hybrid", "hybrid_rerank", "contextual_hybrid_rerank"]
+    b2 = pd.DataFrame({"strategy": "naive", "setting": "main", "config": configs,
+                       "pass_all@10": [0.7, 0.75, 0.85, 0.95],
+                       "latency_p50_ms": [5.0, 10.0, 300.0, 300.0]})
+    summary = pd.DataFrame({
+        "system": ["fixed", "agentic"], "exec_accuracy": [0.4, 0.3],
+        "prompt_tokens_mean": [1000.0, 9000.0], "completion_tokens_mean": [50.0, 250.0],
+        "latency_p50_ms": [2000.0, 9000.0], "usd_per_1000_questions": [0.3, 2.8],
+    })
+    out = b3.layer_economics(b2, summary, n_chunks=7).set_index("layer")
+    assert round(out.loc["hybrid", "gain_points"], 6) == 5.0
+    assert round(out.loc["hybrid", "latency_ms_per_point"], 6) == 1.0
+    assert out.loc["contextual_chunks", "one_time_cost"] == "one LLM call per chunk (7 calls)"
+    assert round(out.loc["agentic_loop", "gain_points"], 6) == -10.0
+    assert out.loc["agentic_loop", "llm_tokens_added"] == 8200.0
+    assert pd.isna(out.loc["agentic_loop", "usd_per_1000_per_point"])
