@@ -105,6 +105,8 @@ Retrieval gains come from Block 2 (1,147 questions); the agent's from Block 3.
 - FinQA mostly needs one or two facts from a single page that the fixed pipeline already finds.
   An agent is meant for open, multi-hop search across documents, which this benchmark rarely asks.
 - Prompts were designed on 100 other test questions that share some pages with the evaluation set.
+- The frozen numeric match (`|pred − gold| ≤ 0.005 · max(|gold|, 1)`) is an absolute 0.005 for
+  answers below 1, so accuracies are optimistic on ratios; its effect per system was not measured.
 
 ## Revisit when
 

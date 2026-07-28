@@ -12,8 +12,8 @@ looks at when to escalate from a fixed pipeline to an agentic retriever.
 | Block | Topic | Status |
 |-------|-------|--------|
 | [B1 — Watch](blocks/01-watch/) | Contextual Retrieval, A-RAG, advanced retrieval patterns | done |
-| [B2 — Retrieval bench](blocks/02-retrieval-bench/) | Pass@k / recall / latency across 4 configs × 2 chunkings | planned |
-| [B3 — System design](blocks/03-system-design/) | Fixed vs agentic RAG, split evaluation, layer economics | planned |
+| [B2 — Retrieval bench](blocks/02-retrieval-bench/) | Pass@k / recall / latency across 4 configs × 2 chunkings | done |
+| [B3 — System design](blocks/03-system-design/) | Fixed vs agentic RAG, split evaluation, layer economics | done |
 | [B4 — Reading](blocks/04-reading/) | Agentic RAG survey — taxonomy | planned |
 | [L2 — Armor Gestion](deliverable-2-armor-gestion/) | Client case: table-aware agentic RAG with numeric grounding | planned |
 
