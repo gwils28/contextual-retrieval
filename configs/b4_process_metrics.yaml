@@ -1,0 +1,36 @@
+# Block 4 — Process-level metrics of the Block 3 agent (survey lesson 10.5).
+# Written 2026-07-29 BEFORE these metrics were computed. The Block 3 traces themselves had been
+# read (development log, ADR-0001), so the block reports them as EXPLORATORY: they describe how
+# the agent spent its budget; they never rank systems and never change a Block 3 conclusion.
+
+id: b4-process-v1
+status: frozen
+frozen_on: 2026-07-29
+
+question: >
+  Singh et al. (2026, section 10.5) argue that agentic RAG must be evaluated on the process,
+  not only on the outcome. What does the process of the Block 3 agent look like, measured from
+  its recorded traces only (no new LLM run)?
+
+data:
+  source: blocks/03-system-design/results/evaluation/agentic.jsonl (100 evaluation questions,
+    agent prompt v1, written by `make b3`)
+  initial_pool: the fixed pipeline's top-10, i.e. the first `len(context) - added_chunks` ids of
+    each row's `context` (the agent appends what it reads after them)
+
+metrics:  # per question, then summed or averaged over questions
+  tool_calls: number of trace steps
+  calls_by_tool: keyword_search, semantic_search, chunk_read, page_read, invalid
+  invalid: a call to an unknown tool, or a read with an unknown chunk id (no result)
+  empty_read: a chunk_read or page_read that adds no chunk to the evidence pool
+  reread_of_initial: a chunk_read of a chunk of the initial top-10, whose full text the agent
+    was already given in its first prompt
+  search_without_new_candidate: a search whose 5 results are all already in the pool
+  chunks_added: chunks the loop added to the pool
+
+report:
+  - all questions, and split by how the loop ended (`stop`: done / tool_budget)
+  - shares are computed over calls of the relevant type (e.g. empty_read / reads)
+  - no confidence interval and no test: descriptive only
+
+reproduce: make b4

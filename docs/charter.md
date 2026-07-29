@@ -103,3 +103,4 @@ Based on the owner's article *Claude Code for data science*:
 | 2026-07-23 | Block 3: no Claude reference run | Owner's decision; every Block 3 result comes from qwen2.5:7b-instruct |
 | 2026-07-27 | Block 3: fixed retrieve-then-read is the default; agentic loop and cascade not adopted (ADR-0001) | No gain shown after Holm, 7.6× the cost and 2.7× the latency of fixed; generation, not retrieval, is the bottleneck |
 | 2026-07-27 | Block 3 agent and cascade breakdown reported as exploratory (`exploratory.csv`) | Defined after the evaluation numbers were seen: it explains them, never ranks systems |
+| 2026-07-29 | Block 4 extended with a check of the survey's lessons against Blocks 2–3 and process-level metrics of the Block 3 agent (`make b4`, exploratory) | A reading block that ignores the project's evidence teaches less; metrics defined after the traces were read, so descriptive only |

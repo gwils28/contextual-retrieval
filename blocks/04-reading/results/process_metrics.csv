@@ -1,0 +1,4 @@
+group,questions,tool_calls_mean,calls_keyword_search,calls_semantic_search,calls_chunk_read,calls_page_read,calls_invalid,empty_read_share,reread_of_initial_share,search_without_new_candidate_share,chunks_added_mean
+all,100,4.91,103,90,229,67,2,0.8074324324324325,0.9694323144104804,0.22797927461139897,1.06
+stop=done,71,4.464788732394366,72,52,139,52,2,0.774869109947644,0.9712230215827338,0.23387096774193547,1.2112676056338028
+stop=tool_budget,29,6.0,31,38,90,15,0,0.8666666666666667,0.9666666666666667,0.21739130434782608,0.6896551724137931

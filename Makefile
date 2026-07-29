@@ -70,3 +70,8 @@ b3-report:
 
 # Full Block 3: needs a running Ollama server.
 b3: b3-eval b3-report
+
+# Block 4: process-level metrics of the Block 3 agent, from its recorded traces (no LLM call).
+.PHONY: b4
+b4:
+	uv run python -m ragbench.b4 process
